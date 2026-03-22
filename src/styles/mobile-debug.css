@@ -1,0 +1,27 @@
+/* Debug helper - Add this temporarily to check if sections are rendering */
+/* You can remove this after confirming everything works */
+
+/* Make sure all sections have solid backgrounds on mobile for debugging */
+@media (max-width: 768px) {
+
+    .about,
+    .skills,
+    .projects,
+    .contact {
+        background: var(--space-black) !important;
+        position: relative !important;
+        z-index: 10 !important;
+    }
+
+    /* Make sure Hero doesn't overflow */
+    .hero {
+        max-height: 85vh;
+        overflow: visible;
+    }
+
+    /* Ensure content is visible */
+    .container {
+        position: relative;
+        z-index: 20;
+    }
+}

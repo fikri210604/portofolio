@@ -1,0 +1,239 @@
+.navbar {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 1200px;
+    z-index: 1000;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 50px;
+    padding: 1rem 0;
+}
+
+.navbar.scrolled {
+    top: 20px;
+    width: 90%;
+    max-width: 800px;
+    background: rgba(15, 15, 20, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    padding: 0.75rem 0;
+}
+
+/* ─── FIX: Grid 3 kolom agar nav links benar-benar di tengah ─── */
+.navbar-container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; /* kiri | tengah | kanan */
+    align-items: center;
+    width: 100%;
+    padding: 0 2.5rem;
+    transition: padding 0.5s ease;
+}
+
+.navbar.scrolled .navbar-container {
+    padding: 0 1.5rem;
+}
+
+/* ─── Logo (Left) ─── */
+.navbar-logo {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--white);
+    text-decoration: none;
+    justify-self: start; /* tetap di kiri */
+    z-index: 1001;
+}
+
+.logo-text {
+    color: var(--white);
+    letter-spacing: -0.5px;
+}
+
+.logo-dot {
+    display: none;
+}
+
+/* ─── Desktop Navigation (Center) ─── */
+.navbar-links.desktop {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    /* FIX: Hapus position absolute, biarkan grid yang handle */
+    position: static;
+    transform: none;
+    justify-self: center; /* grid kolom tengah */
+}
+
+.navbar-links.desktop li {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-links.desktop a {
+    position: relative;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--gray-400);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.navbar-links.desktop a:hover {
+    color: var(--white);
+}
+
+.navbar-links.desktop a.active {
+    color: var(--white);
+    font-weight: 500;
+}
+
+/* Green Dot Indicator */
+.active-indicator {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: #4CAF50;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.6);
+}
+
+.active-indicator-line {
+    display: none;
+}
+
+/* ─── Actions / Theme Toggle (Right) ─── */
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-self: end; /* tetap di kanan */
+}
+
+.nav-social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray-400);
+    transition: all 0.3s ease;
+    padding: 0.25rem;
+}
+
+.nav-social-icon:hover {
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+/* ─── Mobile Menu Button ─── */
+.mobile-menu-button {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+}
+
+.mobile-menu-button span {
+    width: 25px;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-button.open span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.mobile-menu-button.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-button.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Mobile Navigation */
+.navbar-links.mobile {
+    display: none;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+    .navbar {
+        width: 95%;
+        padding: 0.75rem 1.25rem;
+    }
+
+    .navbar-container {
+        grid-template-columns: auto 1fr auto; /* logo | space | burger */
+    }
+
+    .navbar-links.desktop {
+        display: none;
+    }
+
+    .theme-toggle-btn {
+        display: none;
+    }
+
+    .mobile-menu-button {
+        display: flex;
+    }
+
+    .navbar-links.mobile {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 70%;
+        max-width: 300px;
+        height: 100vh;
+        background: rgba(10, 10, 15, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 6rem 2rem 2rem;
+        gap: 1.5rem;
+        list-style: none;
+        box-shadow: -10px 0 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .navbar-links.mobile a {
+        font-family: var(--font-heading);
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--gray-300);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        padding: 0.75rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .navbar-links.mobile a:hover,
+    .navbar-links.mobile a.active {
+        color: var(--white);
+    }
+}

@@ -1,0 +1,357 @@
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 2rem 2rem;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.hero-background-liquid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: auto; /* Memastikan interaksi mouse untuk liquid ether berfungsi */
+}
+
+.hero-gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.3;
+    animation: float 20s ease-in-out infinite;
+}
+
+.orb-1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--cosmic-purple), transparent);
+    top: -10%;
+    right: -10%;
+    animation-delay: 0s;
+}
+
+.orb-2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--cosmic-blue), transparent);
+    bottom: -10%;
+    left: -10%;
+    animation-delay: 7s;
+}
+
+.orb-3 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, var(--stellar-cyan), transparent);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: 14s;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--stellar-cyan) 0%, var(--cosmic-purple) 100%);
+    background-clip: text;
+    color: var(--stellar-cyan);
+    display: inline-block;
+}
+
+.hero-container {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    text-align: center;
+}
+
+.hero-greeting {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--gray-300);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.wave {
+    display: inline-block;
+    font-size: 2rem;
+    animation: wave-animation 2s ease-in-out infinite;
+}
+
+@keyframes wave-animation {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    10%,
+    30% {
+        transform: rotate(14deg);
+    }
+
+    20%,
+    40% {
+        transform: rotate(-8deg);
+    }
+
+    50% {
+        transform: rotate(14deg);
+    }
+
+    60% {
+        transform: rotate(0deg);
+    }
+}
+
+.hero-title {
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 800;
+    margin: 0 0 1rem 0;
+    line-height: 1.1;
+    color: #ffffff;
+    text-shadow: 0 0 40px rgba(82, 39, 255, 0.3);
+}
+
+/* BlurText hero name — renders as <p> so needs explicit heading styles */
+.hero-blur-name {
+    font-size: clamp(4rem, 8vw, 5rem);
+    font-weight: 800;
+    margin: 0 0 1rem 0;
+    line-height: 1.1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.25em;
+}
+
+.hero-blur-name span {
+    background: linear-gradient(135deg, #5227FF, #FF9FFC, #B19EEF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+}
+
+
+
+@keyframes gradient-shift {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.hero-subtitle-container {
+    margin-bottom: 2rem;
+}
+
+.hero-subtitle {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.hero-tagline {
+    font-size: 1.25rem;
+    color: var(--gray-300);
+    margin: 0;
+}
+
+.hero-description {
+    font-size: 1.125rem;
+    color: var(--gray-300);
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+}
+
+.hero-scroll-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.7;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.hero-scroll-indicator:hover {
+    opacity: 1;
+}
+
+.scroll-line {
+    width: 2px;
+    height: 40px;
+    background: linear-gradient(180deg, transparent, var(--stellar-cyan), transparent);
+    border-radius: 2px;
+}
+
+.scroll-text {
+    font-size: 0.875rem;
+    font-family: var(--font-heading);
+    color: var(--gray-300);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Floating Elements */
+.hero-floating-element {
+    position: absolute;
+    z-index: 1;
+    filter: drop-shadow(0 0 20px currentColor);
+}
+
+.element-1 {
+    top: 15%;
+    right: 10%;
+    color: var(--stellar-cyan);
+    font-size: 4rem;
+}
+
+.element-2 {
+    bottom: 25%;
+    left: 8%;
+    color: var(--cosmic-pink);
+    font-size: 3rem;
+}
+
+.element-3 {
+    top: 40%;
+    right: 15%;
+    color: var(--cosmic-purple);
+    font-size: 3.5rem;
+}
+
+.element-4 {
+    top: 10%;
+    left: -100px;
+    color: #ffeb3b;
+    font-size: 2rem;
+    opacity: 0.8;
+}
+
+.floating-icon {
+    animation: float 3s ease-in-out infinite;
+    display: inline-block;
+}
+
+.rocket-icon {
+    position: relative;
+}
+
+.rocket-exhaust {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-90deg);
+    font-size: 0.6em;
+    filter: blur(2px);
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero {
+        padding: 5rem 1.5rem 2rem;
+        min-height: 85vh;
+        /* Reduced from 100vh */
+    }
+
+    .hero-greeting {
+        font-size: 1.25rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-buttons button {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .floating-icon {
+        font-size: 2.5rem;
+    }
+
+    .hero-gradient-orb {
+        filter: blur(60px);
+    }
+
+    .orb-1,
+    .orb-2,
+    .orb-3 {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 4rem 1rem 2rem;
+        min-height: 80vh;
+        /* Even smaller on very small screens */
+    }
+
+    .hero-tagline {
+        font-size: 1rem;
+    }
+
+    .scroll-line {
+        height: 30px;
+    }
+
+    .floating-icon {
+        font-size: 2rem;
+    }
+}

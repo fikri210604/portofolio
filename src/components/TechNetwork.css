@@ -1,0 +1,100 @@
+.tech-network-container {
+    position: relative;
+    width: 100%;
+    margin: 3rem 0;
+    overflow: hidden;
+}
+
+/* The outer track that clips the marquee */
+.marquee-track {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Left & right side fade effect using CSS mask */
+.fade-sides {
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 12%,
+        black 88%,
+        transparent
+    );
+    mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 12%,
+        black 88%,
+        transparent
+    );
+}
+
+/* Each copy of the list scrolls together */
+.marquee-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
+    /* Scroll one full copy width from left to right, then reset */
+    animation: marquee-scroll 25s linear infinite;
+}
+
+/* Pause the whole track on hover */
+.marquee-track:hover .marquee-list {
+    animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Individual tech item */
+.tech-item-horizontal {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 2rem;
+    color: #cbd5e0;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    cursor: default;
+    transition: color 0.25s ease;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tech-item-horizontal:hover {
+    color: #fff;
+}
+
+.tech-item-icon {
+    font-size: 3rem;
+    line-height: 2;
+}
+
+.tech-item-name {
+    font-size: 2rem;
+}
+
+@media (max-width: 768px) {
+    .tech-network-container {
+        margin: 2rem 0;
+    }
+
+    .fade-sides {
+        -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+        mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    }
+
+    .tech-item-horizontal {
+        padding: 0.5rem 1.2rem;
+    }
+}
+

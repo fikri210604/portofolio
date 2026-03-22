@@ -1,0 +1,213 @@
+.projects {
+    position: relative;
+    padding: var(--section-padding) 0;
+    overflow: hidden;
+}
+
+.projects .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* ─── Filter Buttons ─── */
+.project-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.5rem 1.5rem;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--gray-300);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, var(--cosmic-purple), var(--cosmic-blue));
+    color: var(--white);
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(107, 76, 230, 0.3);
+}
+
+/* ─── Projects Grid ─── */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 3rem 2rem;
+}
+
+/* ─── Project Card Wrapper ─── */
+.project-card-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ─── Spotlight Card Customization (The Image Container) ─── */
+.custom-spotlight-card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3; /* Matches the wide presentation style */
+    padding: 0;
+    background: var(--glass-bg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px; /* Large rounded corners like reference */
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    cursor: pointer;
+}
+
+.custom-spotlight-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(107, 76, 230, 0.15);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Spotlight creates a pseudo-element, make sure inner content is above it */
+.custom-spotlight-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* ─── Project Image ─── */
+.project-image-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.custom-spotlight-card:hover .project-img {
+    transform: scale(1.05);
+}
+
+/* ─── Project Overlay (Hover) ─── */
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 15, 25, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+.custom-spotlight-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-links {
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.custom-spotlight-card:hover .project-links {
+    transform: translateY(0);
+}
+
+.project-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--white);
+    border-radius: 30px;
+    color: var(--background);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.project-link:hover {
+    background: var(--stellar-cyan);
+    transform: scale(1.05);
+}
+
+/* ─── Bottom Info (Outside Card) ─── */
+.project-bottom-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+}
+
+.project-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--white);
+    letter-spacing: -0.5px;
+}
+
+.project-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    color: var(--gray-400);
+}
+
+.project-category {
+    font-weight: 500;
+}
+
+.project-year {
+    font-family: var(--font-mono);
+    opacity: 0.7;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2.5rem 1.5rem;
+    }
+
+    .project-filters {
+        gap: 0.5rem;
+    }
+    
+    .filter-btn {
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .project-title {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}

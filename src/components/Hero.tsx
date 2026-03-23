@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
 import { useRef, useEffect } from 'react';
+import ParallaxSection from './elements/ParallaxSection';
 import GradientText from './elements/GradientText';
-import BlurText from './elements/BlurText';
+import { FaRocket } from 'react-icons/fa';
+import BlurText from './elements/BlurText'; // Komponen ini belum digunakan di kode awal, dapat dieksplorasi lebih lanjut
 import './Hero.css';
 
 const containerVariants = {
@@ -51,91 +53,90 @@ export default function Hero() {
 
     return (
         <section id="home" className="hero">
-
-            <motion.div
-                className="hero-container"
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-            >
-                <motion.div className="hero-greeting" variants={itemVariants}>
-                    <span className="wave">👋</span> Hi, I'm
-                </motion.div>
-
-                <motion.div className="hero-title" variants={itemVariants} style={{ display: 'flex', justifyContent: 'center' }}>
-                    <GradientText
-                        colors={["#5227FF","#FF9FFC","#B19EEF"]}
-                        animationSpeed={8}
-                        showBorder={false}
-                        className="inline-block"
-                    >
-                        Fikri
-                    </GradientText>
-                </motion.div>
-
-                <motion.div className="hero-subtitle-container" variants={itemVariants}>
-                    <h2 className="hero-subtitle">
-                        <span className="gradient-text">
-                            <GradientText
-                                colors={["#5227FF","#FF9FFC","#B19EEF"]}
-                                animationSpeed={8}
-                                showBorder={false}
-                                className="inline-block"
-                            >
-                                Full Stack Developer
-                            </GradientText>
-                        </span>
-                    </h2>
-                    <p className="hero-tagline">
-                        Building amazing digital experiences with modern technologies
-                    </p>
-                </motion.div>
-
-                <motion.p className="hero-description" variants={itemVariants}>
-                    Passionate about creating interactive, accessible, and scalable web
-                    applications that make a difference. Specialized in React, TypeScript,
-                    and modern web technologies.
-                </motion.p>
-
-                <motion.div className="hero-buttons" variants={itemVariants}>
-                    <button
-                        className="cosmic-button"
-                        onClick={() => scrollToSection('projects')}
-                    >
-                        View My Work
-                    </button>
-                    <button
-                        className="cosmic-button cosmic-button-outline"
-                        onClick={() => window.open('/resume.pdf', '_blank')}
-                    >
-                        View My Resume
-                    </button>
-                </motion.div>
-
+            <ParallaxSection offset={100}>
                 <motion.div
-                    className="hero-scroll-indicator"
-                    variants={itemVariants}
-                    animate={{
-                        y: [0, 10, 0],
-                    }}
-                    transition={{
-                        duration: 1.5,
-                        repeat: Infinity,
-                        ease: 'easeInOut',
-                    }}
+                    className="hero-container"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
                 >
-                    <div className="scroll-line" />
-                    <span className="scroll-text">Scroll Down</span>
-                </motion.div>
-            </motion.div>
+                    <motion.div className="hero-greeting" variants={itemVariants}>
+                        <span className="wave">👋</span> Hello, I am
+                    </motion.div>
 
-            {/* Floating Elements */}
+                    <motion.div className="hero-title" variants={itemVariants} style={{ display: 'flex', justifyContent: 'center' }}>
+                        <GradientText
+                            colors={["#5227FF","#FF9FFC","#B19EEF"]}
+                            animationSpeed={8}
+                            showBorder={false}
+                            className="inline-block"
+                        >
+                            Fikri
+                        </GradientText>
+                    </motion.div>
+
+                    <motion.div className="hero-subtitle-container" variants={itemVariants}>
+                        <h2 className="hero-subtitle">
+                            <span className="gradient-text">
+                                <GradientText
+                                    colors={["#5227FF","#FF9FFC","#B19EEF"]}
+                                    animationSpeed={8}
+                                    showBorder={false}
+                                    className="inline-block"
+                                >
+                                    Software Engineer & AI Enthusiast
+                                </GradientText>
+                            </span>
+                        </h2>
+                        <p className="hero-tagline">
+                            Architecting Scalable Platforms at the Intersection of Web Development, GIS, and Machine Learning.
+                        </p>
+                    </motion.div>
+
+                    <motion.div className="hero-description" variants={itemVariants}>
+                        Specializing in full-stack engineering, spatiotemporal data rendering, and AI-augmented solutions. Dedicated to implementing <em>Clean Architecture</em> using modern ecosystems like React, Next.js, and Laravel to solve complex multidimensional problems.
+                    </motion.div>
+
+                    <motion.div className="hero-buttons" variants={itemVariants}>
+                        <button
+                            className="cosmic-button"
+                            onClick={() => scrollToSection('projects')}
+                        >
+                            Explore Enterprise Projects
+                        </button>
+                        <button
+                            className="cosmic-button cosmic-button-outline"
+                            onClick={() => window.open('/resume.pdf', '_blank')}
+                        >
+                            View Academic Resume
+                        </button>
+                    </motion.div>
+
+                    <motion.div
+                        className="hero-scroll-indicator"
+                        variants={itemVariants}
+                        animate={{
+                            y: [0, 10, 0],
+                        }}
+                        transition={{
+                            duration: 1.5,
+                            repeat: Infinity,
+                            ease: 'easeInOut',
+                        }}
+                    >
+                        <div className="scroll-line" />
+                        <span className="scroll-text">Scroll Down</span>
+                    </motion.div>
+                </motion.div>
+            </ParallaxSection>
+
+            {/* Floating Elements Tetap Dipertahankan untuk Estetika Visual */}
             <motion.div
                 className="hero-floating-element element-1"
                 animate={{
-                    y: [0, -40, 0],
+                    y: [0, -30, 0],
                     x: [0, 30, 0],
-                    rotate: [0, 15, -10, 0],
+                    rotate: [45, 55, 35, 45], 
                 }}
                 transition={{
                     duration: 8,
@@ -144,7 +145,8 @@ export default function Hero() {
                 }}
             >
                 <div className="floating-icon rocket-icon">
-                    🚀
+                    {/* -45deg aligns the top-right pointing FaRocket to straight UP */}
+                    <FaRocket style={{transform: "rotate(-45deg)"}} />
                     <motion.div
                         className="rocket-exhaust"
                         animate={{
@@ -218,7 +220,6 @@ export default function Hero() {
                 </motion.div>
             </motion.div>
 
-            {/* Additional shooting star */}
             <motion.div
                 className="hero-floating-element element-4"
                 animate={{
@@ -232,7 +233,7 @@ export default function Hero() {
                     ease: "easeIn",
                 }}
             >
-                <div className="floating-icon">💫</div>
+                <div className="floating-icon">🚀</div>
             </motion.div>
         </section>
     );

@@ -1,0 +1,96 @@
+.github-activity {
+    padding: 100px 0;
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.github-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.github-calendar-container {
+    padding: 2.5rem;
+    overflow-x: auto;
+    border-radius: 20px;
+    background: rgba(13, 17, 23, 0.7); /* Darker GitHub-like bg */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.calendar-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    min-width: 800px; /* Ensure map doesn't squish too much */
+}
+
+/* Override react-github-calendar text colors */
+.calendar-wrapper text {
+    fill: #8b949e !important;
+}
+
+.github-stats-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.stat-card {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(13, 17, 23, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px -10px rgba(82, 39, 255, 0.3);
+}
+
+.card-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+    text-align: left;
+    width: 100%;
+}
+
+.stat-image {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 992px) {
+    .github-stats-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .github-activity {
+        padding: 60px 0;
+    }
+    
+    .github-calendar-container {
+        padding: 1.5rem;
+        /* Allow scrolling on mobile instead of shrinking */
+        justify-content: flex-start; 
+    }
+    
+    .calendar-wrapper {
+        justify-content: flex-start;
+    }
+}

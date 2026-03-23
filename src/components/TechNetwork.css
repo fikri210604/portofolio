@@ -41,7 +41,11 @@
     padding: 0;
     flex-shrink: 0;
     /* Scroll one full copy width from left to right, then reset */
-    animation: marquee-scroll 25s linear infinite;
+    animation: marquee-scroll var(--duration, 25s) linear infinite;
+}
+
+.marquee-list.reverse {
+    animation: marquee-scroll-reverse var(--duration, 25s) linear infinite;
 }
 
 /* Pause the whole track on hover */
@@ -52,6 +56,11 @@
 @keyframes marquee-scroll {
     0%   { transform: translateX(0); }
     100% { transform: translateX(-100%); }
+}
+
+@keyframes marquee-scroll-reverse {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(0); }
 }
 
 /* Individual tech item */
@@ -75,12 +84,14 @@
 }
 
 .tech-item-icon {
-    font-size: 3rem;
-    line-height: 2;
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .tech-item-name {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 @media (max-width: 768px) {

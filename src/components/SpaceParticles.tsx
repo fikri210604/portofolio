@@ -28,8 +28,10 @@ export default function SpaceParticles() {
     }
 
     // Reduce particles on mobile, but don't disable completely
-    const particleCount = isMobile ? 15 : 30;
-    const particleSpeed = isMobile ? 0.4 : 0.6;
+    // Reduce particles on mobile and for initial load
+    const particleCount = isMobile ? 12 : 25;
+    const particleSpeed = isMobile ? 0.35 : 0.5;
+
 
     return (
         <Particles
@@ -94,8 +96,9 @@ export default function SpaceParticles() {
                         value: { min: 1, max: 2 },
                     },
                 },
-                detectRetina: true,
+                detectRetina: false,
             }}
         />
+
     );
 }

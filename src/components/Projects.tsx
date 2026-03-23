@@ -1,6 +1,8 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
+import ParallaxSection from "./elements/ParallaxSection";
 import SpotlightCard from "./elements/SpotlightCard";
+
 import "./Projects.css";
 import GradientText from "./elements/GradientText";
 
@@ -107,108 +109,112 @@ export default function Projects() {
 
   return (
     <section id="projects" className="projects" ref={ref}>
-      <div className="container">
-        <motion.div
-          className="section-header"
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={fadeInUp}
-        >
-          <motion.h2 variants={fadeInUp}>
-            <GradientText
-              colors={["#5227FF", "#FF9FFC", "#B19EEF"]}
-              animationSpeed={8}
-              showBorder={false}
-              className="inline-block"
-            >
-              Featured Projects
-            </GradientText>
-          </motion.h2>
-          <p className="section-subtitle">Things I've built recently</p>
-        </motion.div>
-
-        {/* Filter Buttons */}
-        <motion.div
-          className="project-filters"
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={fadeInUp}
-        >
-          {categories.map((category) => (
-            <button
-              key={category}
-              className={`filter-btn ${filter === category ? "active" : ""}`}
-              onClick={() => setFilter(category)}
-            >
-              {category}
-            </button>
-          ))}
-        </motion.div>
-
-        {/* Projects Grid with SpotlightCards */}
-        <motion.div
-          className="projects-grid"
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={{
-            visible: {
-              transition: {
-                staggerChildren: 0.1,
-              },
-            },
-          }}
-        >
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              variants={fadeInUp}
-              layout
-              className="project-card-wrapper"
-            >
-              {/* Inner spotlight area matches the large image card from the reference */}
-              <SpotlightCard
-                className="custom-spotlight-card"
-                spotlightColor="rgba(255, 255, 255, 0.15)"
+      <ParallaxSection offset={70}>
+        <div className="container">
+          <motion.div
+            className="section-header"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={fadeInUp}
+          >
+            <motion.h2 variants={fadeInUp}>
+              <GradientText
+                colors={["#5227FF", "#FF9FFC", "#B19EEF"]}
+                animationSpeed={8}
+                showBorder={false}
+                className="inline-block"
               >
-                <div className="project-image-container">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="project-img"
-                  />
+                Featured Projects
+              </GradientText>
+            </motion.h2>
+            <p className="section-subtitle">Things I've built recently</p>
+          </motion.div>
 
-                  {/* Hover overlay for links */}
-                  <div className="project-overlay">
-                    <div className="project-links">
-                      {project.liveUrl && (
-                        <a
-                          href={project.liveUrl}
-                          className="project-link"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <span>🔗</span> View Project
-                        </a>
-                      )}
+          {/* Filter Buttons */}
+          <motion.div
+            className="project-filters"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={fadeInUp}
+          >
+            {categories.map((category) => (
+              <button
+                key={category}
+                className={`filter-btn ${filter === category ? "active" : ""}`}
+                onClick={() => setFilter(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </motion.div>
+
+          {/* Projects Grid with SpotlightCards */}
+          <motion.div
+            className="projects-grid"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.1,
+                },
+              },
+            }}
+          >
+            {filteredProjects.map((project, index) => (
+              <motion.div
+                key={project.title}
+                variants={fadeInUp}
+                layout
+                className="project-card-wrapper"
+              >
+                {/* Inner spotlight area matches the large image card from the reference */}
+                <SpotlightCard
+                  className="custom-spotlight-card"
+                  spotlightColor="rgba(255, 255, 255, 0.15)"
+                >
+                  <div className="project-image-container">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="project-img"
+                      {...(index === 0 ? { fetchpriority: "high" } : {})}
+                    />
+
+
+                    {/* Hover overlay for links */}
+                    <div className="project-overlay">
+                      <div className="project-links">
+                        {project.liveUrl && (
+                          <a
+                            href={project.liveUrl}
+                            className="project-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <span>🔗</span> View Project
+                          </a>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </SpotlightCard>
+                </SpotlightCard>
 
-              {/* Text content placed OUTSIDE the spotlight card, at the bottom */}
-              <div className="project-bottom-info">
-                <h3 className="project-title">{project.title}</h3>
-                <div className="project-meta">
-                  <span className="project-category">
-                    {project.description}
-                  </span>
-                  <span className="project-year">{project.year}</span>
+                {/* Text content placed OUTSIDE the spotlight card, at the bottom */}
+                <div className="project-bottom-info">
+                  <h3 className="project-title">{project.title}</h3>
+                  <div className="project-meta">
+                    <span className="project-category">
+                      {project.description}
+                    </span>
+                    <span className="project-year">{project.year}</span>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </ParallaxSection>
     </section>
   );
 }

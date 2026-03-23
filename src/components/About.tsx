@@ -57,10 +57,10 @@ export default function About() {
             variants={fadeInUp}
           >
             <ProfileCard
-              avatarUrl="public/profile.png" // Ganti dengan URL foto Anda
-              iconUrl="https://raw.githubusercontent.com/David1Az/react-bits/main/public/placeholder/icon.png"
-              grainUrl="https://raw.githubusercontent.com/David1Az/react-bits/main/public/placeholder/grain.png"
-              miniAvatarUrl="public/profile.png" // Ganti dengan URL foto Anda
+              avatarUrl="/profile.png"
+              iconUrl="/favicon.svg"
+              grainUrl=""
+              miniAvatarUrl="/profile.png"
               name="Ahmad Fikri Hanif"
               title="Software Engineer & AI Enthusiast"
               handle="Fikri"
@@ -102,7 +102,7 @@ export default function About() {
 
             <motion.div className="about-highlights" variants={fadeInUp}>
               <div className="highlight-item">
-                <span className="highlight-icon"><img src="public/Logo_UnivLampung.png" alt="" /></span>
+                <span className="highlight-icon"><img src="/Logo_UnivLampung.png" alt="" /></span>
                 <div>
                   <h4>Education</h4>
                   <p><strong>6th Semester</strong> Computer Science, Universitas Lampung</p>

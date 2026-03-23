@@ -47,7 +47,14 @@ export default function GitHubActivity() {
               Contribution
             </GradientText>
             </h2>
-            <p className="section-subtitle">My contributions & coding stats</p>
+            <p className="section-subtitle">
+              <span className="live-indicator">
+                <span className="pulse-dot"></span>
+                Live
+              </span> 
+              My contributions & coding stats
+            </p>
+
           </motion.div>
 
           <div className="github-content">
@@ -92,10 +99,11 @@ export default function GitHubActivity() {
                   rel="noopener noreferrer"
                 >
                   <img
-                    src="https://github-readme-stats.vercel.app/api?username=fikri210604&show_icons=true&theme=onedark&hide_border=true&bg_color=0D1117"
+                    src="https://github-readme-stats.vercel.app/api?username=fikri210604&show_icons=true&theme=onedark&hide_border=true&bg_color=0D1117&cache_seconds=1800"
                     alt="GitHub Activity Overview"
                     className="stat-image"
                   />
+
                 </a>
               </motion.div>
 
@@ -107,10 +115,11 @@ export default function GitHubActivity() {
                   rel="noopener noreferrer"
                 >
                   <img
-                    src="https://github-readme-stats.vercel.app/api/top-langs/?username=fikri210604&layout=compact&theme=onedark&hide_border=true&bg_color=0D1117"
+                    src="https://github-readme-stats.vercel.app/api/top-langs/?username=fikri210604&layout=compact&theme=onedark&hide_border=true&bg_color=0D1117&cache_seconds=1800"
                     alt="Top Languages"
                     className="stat-image"
                   />
+
                 </a>
               </motion.div>
             </motion.div>

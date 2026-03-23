@@ -3,7 +3,6 @@ import { useRef, useState } from "react";
 import ParallaxSection from "./elements/ParallaxSection";
 import SpotlightCard from "./elements/SpotlightCard";
 import ProjectDetail from "./elements/ProjectDetail";
-
 import "./Projects.css";
 import GradientText from "./elements/GradientText";
 

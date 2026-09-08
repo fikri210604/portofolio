@@ -1,252 +1,356 @@
-.projects {
+/* Projects Editorial Section */
+.projects-editorial {
     position: relative;
-    padding: var(--section-padding) 0;
-    overflow: hidden;
+    padding: 90px 1.5rem 50px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    background: transparent;
+    z-index: 10;
 }
 
-.projects .container {
-    position: relative;
-    z-index: 1;
+.projects-container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* ─── Filter Buttons ─── */
-.project-filters {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
+.projects-header {
+    margin-bottom: 4rem;
 }
 
-.filter-btn {
-    padding: 0.5rem 1.5rem;
-    border-radius: 30px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--gray-300);
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.projects-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.2rem, 4.5vw, 3.25rem);
+    font-weight: 700;
+    color: var(--zinc-100);
+    letter-spacing: -0.03em;
+    margin-bottom: 0.75rem;
 }
 
-.filter-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--white);
-}
-
-.filter-btn.active {
-    background: linear-gradient(135deg, var(--cosmic-purple), var(--cosmic-blue));
-    color: var(--white);
-    border-color: transparent;
-    box-shadow: 0 4px 15px rgba(107, 76, 230, 0.3);
-}
-
-/* ─── Projects Grid ─── */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-    gap: 3rem 2rem;
-}
-
-/* ─── Project Card Wrapper ─── */
-.project-card-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    cursor: pointer;
-}
-
-/* ─── Short Description ─── */
-.project-short-desc {
-    font-size: 0.9rem;
+.projects-subtitle {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    color: var(--zinc-400);
+    max-width: 680px;
     line-height: 1.6;
-    color: var(--gray-300);
-    margin: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    line-clamp: 2;
-    overflow: hidden;
+    margin-bottom: 2rem;
 }
 
-/* ─── Card Tags ─── */
-.project-tags {
+/* Minimalist Filter Bar */
+.projects-filter-bar {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.35rem;
+    gap: 0.5rem;
 }
 
-.project-tag {
-    padding: 0.2rem 0.6rem;
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: var(--gray-300);
-    background: rgba(255, 255, 255, 0.05);
+.filter-pill {
+    padding: 0.45rem 1.15rem;
+    border-radius: 9999px;
+    background: rgba(24, 24, 27, 0.6);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    letter-spacing: 0.3px;
-    transition: all 0.25s ease;
-}
-
-.project-card-wrapper:hover .project-tag {
-    border-color: rgba(107, 76, 230, 0.3);
-}
-
-/* ─── Spotlight Card Customization (The Image Container) ─── */
-.custom-spotlight-card {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 4 / 3; /* Matches the wide presentation style */
-    padding: 0;
-    background: var(--glass-bg);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px; /* Large rounded corners like reference */
-    overflow: hidden;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    color: var(--zinc-400);
+    font-family: var(--font-heading);
+    font-size: 0.8125rem;
+    font-weight: 500;
     cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-.custom-spotlight-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(107, 76, 230, 0.15);
+.filter-pill:hover {
+    background: rgba(39, 39, 42, 0.8);
+    color: var(--zinc-200);
     border-color: rgba(255, 255, 255, 0.15);
 }
 
-/* Spotlight creates a pseudo-element, make sure inner content is above it */
-.custom-spotlight-card > * {
-    position: relative;
-    z-index: 2;
+.filter-pill.active {
+    background: var(--zinc-100);
+    color: #09090b;
+    border-color: var(--zinc-100);
+    font-weight: 600;
 }
 
-/* ─── Project Image ─── */
-.project-image-container {
+/* Projects Stack */
+.projects-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 4.5rem;
+    margin-top: 3.5rem;
+}
+
+.project-card-wrap {
     width: 100%;
-    height: 100%;
+    display: flex;
+    justify-content: center;
+    perspective: 1200px;
+}
+
+.project-card {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+    padding: 2.25rem;
+    border-radius: 24px;
+    background: rgba(18, 18, 22, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    width: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.25s ease-out, border-color 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
+}
+
+.project-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 255, 255, 0.03);
+}
+
+
+/* Alternating Reverse Ordering */
+.project-card.reverse .project-visual-col {
+    order: 2;
+}
+
+.project-card.reverse .project-content-col {
+    order: 1;
+}
+
+/* Visual Column & Browser Mockup */
+.project-visual-col {
     position: relative;
+    width: 100%;
+}
+
+.browser-mockup {
+    border-radius: 14px;
     overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #111115;
+    box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.8);
+}
+
+.browser-chrome {
     display: flex;
     align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.05); /* Placeholder background */
+    justify-content: space-between;
+    padding: 0.65rem 1rem;
+    background: #16161b;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+.browser-dots {
+    display: flex;
+    gap: 5px;
+}
 
-.project-img {
+.browser-dots .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #3f3f46;
+}
+
+.browser-url {
+    font-family: monospace;
+    font-size: 0.6875rem;
+    color: var(--zinc-500);
+}
+
+.browser-screen {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #09090b;
+    position: relative;
+}
+
+.project-screen-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.7s ease;
+    filter: grayscale(15%);
+    transition: filter 0.4s ease, transform 0.4s ease;
 }
 
-.custom-spotlight-card:hover .project-img {
-    transform: scale(1.05);
+.project-card:hover .project-screen-img {
+    filter: grayscale(0%);
+    transform: scale(1.02);
 }
 
-/* ─── Project Overlay (Hover) ─── */
-.project-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
+.project-screen-fallback {
     width: 100%;
     height: 100%;
-    background: rgba(15, 15, 25, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    background: radial-gradient(circle at center, rgba(39, 39, 42, 0.3) 0%, #0c0c0f 85%);
+}
+
+.fallback-icon {
+    font-size: 2.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.fallback-label {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--zinc-200);
+    margin-bottom: 0.25rem;
+}
+
+.fallback-sub {
+    font-family: monospace;
+    font-size: 0.725rem;
+    color: var(--zinc-500);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* Content Column */
+.project-content-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.project-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.project-year-tag {
+    font-size: 0.75rem;
+    color: var(--zinc-500);
+}
+
+.project-role-badge {
+    display: inline-block;
+    font-size: 0.725rem;
+    padding: 0.2rem 0.65rem;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--zinc-300);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.project-card-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+    font-weight: 700;
+    color: var(--zinc-100);
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+}
+
+.project-card-desc {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--zinc-400);
+    margin-bottom: 1.25rem;
+}
+
+/* Tech Badges */
+.project-tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.75rem;
+}
+
+.tech-badge {
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 0.725rem;
+    color: var(--zinc-400);
+    letter-spacing: -0.01em;
+}
+
+/* Action Buttons */
+.project-action-row {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.btn-case-study {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.65rem 1.35rem;
+    border-radius: 9999px;
+    background: var(--zinc-100);
+    color: #09090b;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.85rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-case-study:hover {
+    background: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+.action-arrow {
+    width: 0.9rem;
+    height: 0.9rem;
+    transition: transform 0.2s ease;
+}
+
+.btn-case-study:hover .action-arrow {
+    transform: translateX(3px);
+}
+
+.btn-circular-link {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    backdrop-filter: blur(4px);
-}
-
-.custom-spotlight-card:hover .project-overlay {
-    opacity: 1;
-}
-
-.project-links {
-    transform: translateY(20px);
-    transition: transform 0.3s ease;
-}
-
-.custom-spotlight-card:hover .project-links {
-    transform: translateY(0);
-}
-
-.project-link {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    background: var(--white);
-    border-radius: 30px;
-    color: var(--background);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--zinc-300);
     text-decoration: none;
-    font-weight: 700;
-    font-size: 0.95rem;
     transition: all 0.2s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.project-link:hover {
-    background: var(--stellar-cyan);
-    transform: scale(1.05);
-}
-
-/* ─── Bottom Info (Outside Card) ─── */
-.project-bottom-info {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 0 0.5rem;
-}
-
-.project-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin: 0;
+.btn-circular-link:hover {
+    background: rgba(255, 255, 255, 0.12);
     color: var(--white);
-    letter-spacing: -0.5px;
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: scale(1.08);
 }
 
-.project-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1rem;
-    color: var(--gray-400);
-}
-
-.project-category {
-    font-weight: 500;
-}
-
-.project-year {
-    font-family: var(--font-mono);
-    opacity: 0.7;
-}
-
-/* ─── Responsive ─── */
-@media (max-width: 768px) {
-    .projects-grid {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 2.5rem 1.5rem;
+/* Responsive */
+@media (max-width: 960px) {
+    .projects-editorial {
+        padding: 80px 1.25rem;
     }
 
-    .project-filters {
-        gap: 0.5rem;
-    }
-    
-    .filter-btn {
-        padding: 0.4rem 1rem;
-        font-size: 0.9rem;
-    }
-
-    .project-title {
-        font-size: 1.25rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .projects-grid {
+    .project-card {
         grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 1.5rem;
+    }
+
+    .project-card.reverse .project-visual-col {
+        order: 1;
+    }
+
+    .project-card.reverse .project-content-col {
+        order: 2;
     }
 }

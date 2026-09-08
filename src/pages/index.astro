@@ -1,11 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar';
-import StarField from '../components/StarField';
-import SpaceParticles from '../components/SpaceParticles';
-import ScrollRocket from '../components/ScrollRocket';
-import PageLoader from '../components/PageLoader';
-import GlobalLiquidEther from '../components/GlobalLiquidEther';
+import Loading from '../components/Loading';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import Experience from '../components/Experience';
@@ -16,16 +12,13 @@ import Contact from '../components/Contact';
 ---
 
 <Layout>
-	<PageLoader client:only="react" />
-	<GlobalLiquidEther client:idle />
-	<StarField client:idle />
-	<SpaceParticles client:idle />
-	<ScrollRocket client:idle />
+	<Loading client:only="react" variant="fullscreen" autoProgress autoProgressDuration={2800} />
 	<Navbar client:load />
 	<Hero client:load />
 
 	<About client:visible />
-	<Experience client:visible />
+	<Experience client:load />
+	<Skills client:visible />
 	<Projects client:visible />
 	<GitHubActivity client:visible />
 	<Contact client:visible />

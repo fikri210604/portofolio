@@ -2,7 +2,7 @@ import './TechNetwork.css';
 
 import { FaPython, FaDocker, FaAws, FaFigma, FaNodeJs, FaVuejs, FaGitAlt, FaPhp, FaJava } from 'react-icons/fa';
 import { FaFlutter } from 'react-icons/fa6';
-import { SiJavascript, SiTypescript, SiReact, SiTailwindcss, SiNextdotjs, SiAstro, SiPostgresql, SiMysql, SiGnubash, SiHtml5, SiCss, SiLaravel, SiDart, SiCplusplus} from 'react-icons/si';
+import { SiJavascript, SiTypescript, SiReact, SiTailwindcss, SiNextdotjs, SiAstro, SiPostgresql, SiMysql, SiGnubash, SiHtml5, SiCss, SiLaravel, SiDart, SiCplusplus } from 'react-icons/si';
 
 const row1 = [
     { name: 'React', icon: <SiReact /> },
@@ -14,23 +14,21 @@ const row1 = [
     { name: 'PostgreSQL', icon: <SiPostgresql /> },
     { name: 'MySQL', icon: <SiMysql /> },
     { name: 'Flutter', icon: <FaFlutter /> }
-
 ];
 
 const row2 = [
     { name: 'Docker', icon: <FaDocker /> },
     { name: 'Tailwind CSS', icon: <SiTailwindcss /> },
-    { name: 'Git/Bash', icon:<div style={{ display: 'flex', gap: '4px' }}><FaGitAlt /><SiGnubash /></div> },
+    { name: 'Git/Bash', icon: <div style={{ display: 'flex', gap: '4px' }}><FaGitAlt /><SiGnubash /></div> },
     { name: 'Figma', icon: <FaFigma /> },
     { name: 'Vue', icon: <FaVuejs /> },
     { name: 'Node.js', icon: <FaNodeJs /> },
     { name: 'Python', icon: <FaPython /> },
     { name: 'JavaScript', icon: <SiJavascript /> },
     { name: 'PHP', icon: <FaPhp /> },
-    { name: 'Dart', icon: <SiDart />},
-    { name: 'C++', icon: <SiCplusplus />},
-    { name: 'Java', icon: <FaJava />},
-
+    { name: 'Dart', icon: <SiDart /> },
+    { name: 'C++', icon: <SiCplusplus /> },
+    { name: 'Java', icon: <FaJava /> },
 ];
 
 export default function TechNetwork() {

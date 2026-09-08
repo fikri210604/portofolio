@@ -2,23 +2,30 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import './PageLoader.css';
 
+const BOOT_LINES = [
+    { at: 0, text: 'init portfolio.sys' },
+    { at: 25, text: 'mount /assets' },
+    { at: 55, text: 'load profile.dat' },
+    { at: 85, text: 'ready.' },
+];
+
 export default function PageLoader() {
     const [isLoading, setIsLoading] = useState(true);
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
-        // Simulate loading progress
+        // Simulate loading progress — angka bersifat dekoratif, dibuat cepat
+        // dan sekali tampil supaya tidak menahan halaman lebih lama dari load asli.
         const interval = setInterval(() => {
             setProgress((prev) => {
                 if (prev >= 100) {
                     clearInterval(interval);
-                    // Hide loader soon after progress completes instead of waiting 2 seconds
-                    setTimeout(() => setIsLoading(false), 500);
+                    setTimeout(() => setIsLoading(false), 400);
                     return 100;
                 }
-                return prev + 15; // Faster steps
+                return prev + 15;
             });
-        }, 50); // Faster interval
+        }, 50);
 
         return () => {
             clearInterval(interval);
@@ -35,83 +42,37 @@ export default function PageLoader() {
                     transition={{ duration: 0.5 }}
                 >
                     <div className="loader-content">
-                        {/* Launch Track */}
-                        <div className="launch-track">
-                            <motion.div 
-                                className="track-line"
-                                initial={{ scaleX: 0 }}
-                                animate={{ scaleX: 1 }}
-                                transition={{ duration: 1, ease: "easeOut" }}
-                            />
-                            
-                            {/* Traveling Rocket */}
-                            <motion.div
-                                className="loader-rocket"
-                                style={{ 
-                                    left: `${progress}%`,
-                                    x: '-50%' 
-                                }}
-                            >
-                                <motion.div
-                                    animate={{
-                                        y: [0, -10, 0],
-                                        rotate: [1, -1, 1],
-                                    }}
-                                    transition={{
-                                        duration: 1.5,
-                                        repeat: Infinity,
-                                        ease: "easeInOut",
-                                    }}
-                                >
-                                    🚀
-                                </motion.div>
+                        <div className="terminal-boot">
+                            <div className="terminal-boot-bar">
+                                <span className="tdot r" />
+                                <span className="tdot y" />
+                                <span className="tdot g" />
+                                <span className="terminal-boot-name">boot.sh</span>
+                            </div>
 
-                                {/* Flame */}
-                                <motion.div
-                                    className="loader-flame"
-                                    animate={{
-                                        scale: [1, 1.2, 1],
-                                        opacity: [0.8, 0.5, 0.8],
-                                    }}
-                                    transition={{
-                                        duration: 0.3,
-                                        repeat: Infinity,
-                                    }}
-                                >
-                                    🔥
-                                </motion.div>
-                                
-                                {/* Stardust trail */}
-                                <div className="stardust-trail">
-                                    {[...Array(3)].map((_, i) => (
-                                        <motion.span
-                                            key={i}
-                                            animate={{
-                                                x: [-10, -30],
-                                                opacity: [1, 0],
-                                                scale: [1, 0.5],
-                                            }}
-                                            transition={{
-                                                duration: 0.8,
-                                                repeat: Infinity,
-                                                delay: i * 0.2,
-                                            }}
+                            <div className="terminal-boot-body">
+                                {BOOT_LINES.map((line) => {
+                                    const active = progress >= line.at;
+                                    const done = progress >= line.at + 20 || progress >= 100;
+                                    return (
+                                        <motion.p
+                                            key={line.text}
+                                            className="terminal-boot-line"
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: active ? 1 : 0.15 }}
+                                            transition={{ duration: 0.25 }}
                                         >
-                                            ✨
-                                        </motion.span>
-                                    ))}
-                                </div>
-                            </motion.div>
-                        </div>
+                                            <span className="terminal-boot-prompt">$</span> {line.text}
+                                            {active && (
+                                                <span className={`terminal-boot-status ${done ? 'ok' : ''}`}>
+                                                    {done ? ' ....... ok' : ' ...'}
+                                                </span>
+                                            )}
+                                        </motion.p>
+                                    );
+                                })}
+                            </div>
 
-                        {/* Loading Text */}
-                        <motion.div
-                            className="loader-text"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.3, duration: 0.6 }}
-                        >
-                            <h2>Launching Portfolio</h2>
                             <div className="progress-bar-container">
                                 <div className="progress-bar">
                                     <motion.div
@@ -121,9 +82,8 @@ export default function PageLoader() {
                                 </div>
                                 <p className="progress-text">{progress}%</p>
                             </div>
-                        </motion.div>
+                        </div>
                     </div>
-
                 </motion.div>
             )}
         </AnimatePresence>

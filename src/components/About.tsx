@@ -1,161 +1,139 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, type Variants } from "framer-motion";
 import { useRef } from "react";
-import ParallaxSection from "./elements/ParallaxSection";
-import ProfileCard from "./elements/ProfileCard";
-import TechNetwork from "./TechNetwork";
-import GradientText from "./elements/GradientText";
-import { IoLocationSharp } from "react-icons/io5";
+import unilaImg from "../assets/unila.webp";
 import "./About.css";
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 60 },
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.6,
+      ease: [0.215, 0.61, 0.355, 1] as [number, number, number, number],
     },
   },
 };
 
-
 export default function About() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 0.3 });
+  const isInView = useInView(ref, { amount: 0.2, once: true });
 
   return (
-    <section id="about" className="about" ref={ref}>
-      <ParallaxSection offset={80}>
-        <div className="container">
+    <section id="about" className="about-editorial" ref={ref}>
+      <div className="about-container">
+        {/* Section Header Micro-Label */}
+        <motion.div
+          className="about-section-header"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={fadeInUp}
+        >
+          <span className="section-mono-tag">01. PROFILE & PHILOSOPHY</span>
+          <h2 className="about-display-title">
+            Engineering with Purpose, Precision, and Pragmatism.
+          </h2>
+        </motion.div>
+
+        {/* Editorial 2-Column Composition */}
+        <div className="about-grid">
+          {/* Left Column: Core Statement & Bio */}
           <motion.div
-            className="section-header"
+            className="about-left-col"
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            variants={fadeInUp}
-          >
-            <motion.h2 variants={fadeInUp}>
-              <GradientText
-                colors={["#5227FF", "#FF9FFC", "#B19EEF"]}
-                animationSpeed={8}
-                showBorder={false}
-                className="inline-block"
-              >
-                About Me
-              </GradientText>
-            </motion.h2>
-            <p className="section-subtitle">Architecting Intelligent Systems</p>
-          </motion.div>
-
-          <div className="about-content">
-            <motion.div
-              className="about-image-container"
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              variants={fadeInUp}
-            >
-              <ProfileCard
-                avatarUrl="/profile.png"
-                iconUrl="/favicon.svg"
-                grainUrl=""
-                miniAvatarUrl="/profile.png"
-                name="Ahmad Fikri Hanif"
-                title="Software Engineer & AI Enthusiast"
-                handle="Fikri"
-                innerGradient="linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)"
-                behindGlowColor="rgba(125, 190, 255, 0.67)"
-                behindGlowSize="50%"
-                onContactClick={() => {
-                  const element = document.getElementById("contact");
-                  if (element) {
-                    element.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-              />
-            </motion.div>
-
-            <motion.div
-              className="about-text"
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              variants={{
-                visible: {
-                  transition: {
-                    staggerChildren: 0.15,
-                  },
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.15,
                 },
-              }}
-            >
-              <motion.p variants={fadeInUp}>
-                Hello! I am a Computer Science student at{" "}
-                <strong>Universitas Lampung</strong> on{" "}
-                <strong>6th semester</strong> with a strong specialization in{" "}
-                <strong>Full-Stack Web Development, Machine Learning</strong>, and{" "}
-                <strong>Artificial Intelligence</strong>.
-              </motion.p>
+              },
+            }}
+          >
+            <motion.p className="about-lead-paragraph" variants={fadeInUp}>
+              I am a Computer Science undergraduate at <strong>Universitas Lampung (Semester 6)</strong>, dedicated to building high-performance web systems, resilient REST APIs, and applied machine learning applications.
+            </motion.p>
 
-              <motion.p variants={fadeInUp}>
-                My engineering philosophy revolves around building scalable,
-                secure, and modular applications. I leverage modern frameworks
-                like React, Next.js, and Laravel, adhering strictly to{" "}
-                <em>Clean Architecture</em> principles to solve complex
-                multidimensional problems, such as spatiotemporal data rendering
-                for real-time utility monitoring.
-              </motion.p>
+            <motion.p className="about-body-paragraph" variants={fadeInUp}>
+              My engineering approach prioritizes <em>Clean Architecture</em>, modular boundaries, and verifiable system stability. Rather than chasing superficial design trends, I focus on solving multidimensional data challenges—such as spatiotemporal utility telemetry, automated information extraction, and scalable enterprise workflows.
+            </motion.p>
 
-              <motion.p variants={fadeInUp}>
-                Currently, my focus lies in the intersection of software
-                engineering and machine learning. From developing enterprise-level
-                conceptualizing AI-augmented national supply chain monitoring
-                systems, I am driven by the optimization of algorithms and the
-                implementation of robust data pipelines.
-              </motion.p>
+            <motion.p className="about-body-paragraph" variants={fadeInUp}>
+              Alongside software development, I actively mentor junior developers as a Teaching Assistant across multiple computer science subjects, reinforcing core principles of object-oriented design (SOLID), data structures, and client-server systems.
+            </motion.p>
 
-              <motion.div className="about-highlights" variants={fadeInUp}>
-                <div className="highlight-item">
-                  <span className="highlight-icon">
-                    <img src="/Logo_UnivLampung.png" alt="" />
-                  </span>
-                  <div>
-                    <h4>Education</h4>
-                    <p>
-                      <strong>6th Semester</strong> Computer Science, Universitas
-                      Lampung
-                    </p>
-                  </div>
-                </div>
-                <div className="highlight-item">
-                  <span className="highlight-icon">
-                    <IoLocationSharp />
-                  </span>
-                  <div>
-                    <h4>Location</h4>
-                    <p>Kedaton, Bandar lampung, Lampung, Indonesia</p>
-                  </div>
-                </div>
-              </motion.div>
+            <motion.div className="about-action-row" variants={fadeInUp}>
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="about-link-button"
+              >
+                Inspect Curriculum Vitae
+                <svg className="w-4 h-4 ml-1.5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
             </motion.div>
-          </div>
+          </motion.div>
 
-          {/* Technology Network */}
+          {/* Right Column: Metadata & Evidence Cards */}
           <motion.div
+            className="about-right-col"
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            variants={fadeInUp}
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.12,
+                },
+              },
+            }}
           >
-            <h3 className="tech-network-title">
-              <GradientText
-                colors={["#5227FF", "#FF9FFC", "#B19EEF"]}
-                animationSpeed={8}
-                showBorder={false}
-                className="inline-block"
-              >
-                Technology Ecosystem
-              </GradientText>
-            </h3>
+            {/* Academic Card */}
+            <motion.div className="about-meta-card" variants={fadeInUp}>
+              <div className="meta-card-header">
+                <img src={unilaImg.src} alt="Unila" className="meta-card-icon" />
+                <div>
+                  <span className="card-micro-label">FORMAL EDUCATION</span>
+                  <h4 className="card-title">S1 Ilmu Komputer</h4>
+                </div>
+              </div>
+              <p className="card-desc">
+                Universitas Lampung, 6th Semester (2023 – Present). Focus in Software Engineering, Algorithms & Machine Intelligence.
+              </p>
+            </motion.div>
+
+            {/* Quick Metrics Grid */}
+            <motion.div className="about-stats-grid" variants={fadeInUp}>
+              <div className="stat-box">
+                <span className="stat-num">9+</span>
+                <span className="stat-text">Completed Projects</span>
+              </div>
+              <div className="stat-box">
+                <span className="stat-num">4</span>
+                <span className="stat-text">Courses Assisted</span>
+              </div>
+              <div className="stat-box">
+                <span className="stat-num">3+</span>
+                <span className="stat-text">Years Building</span>
+              </div>
+              <div className="stat-box">
+                <span className="stat-num">100%</span>
+                <span className="stat-text">Evidence Driven</span>
+              </div>
+            </motion.div>
+
+            {/* Location & Status */}
+            <motion.div className="about-meta-card location-card" variants={fadeInUp}>
+              <span className="card-micro-label">LOCATION & TIMEZONE</span>
+              <p className="location-text">
+                Kedaton, Bandar Lampung, Indonesia <span className="text-zinc-500">(UTC+7 / WIB)</span>
+              </p>
+            </motion.div>
           </motion.div>
-          <TechNetwork />
         </div>
-      </ParallaxSection>
+      </div>
     </section>
   );
 }

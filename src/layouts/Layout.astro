@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import DotField from '../components/elements/DotField';
 
 interface Props {
   title?: string;
@@ -7,8 +8,8 @@ interface Props {
 }
 
 const { 
-  title = "Portfolio | Space-Themed Interactive Portfolio",
-  description = "Explore my interactive portfolio showcasing projects, skills, and experience in web development."
+  title = "Ahmad Fikri Hanif — Computer Science Student & Software Engineer",
+  description = "Portfolio of Ahmad Fikri Hanif, a Computer Science student at Universitas Lampung focused on web engineering, backend development, data science, and AI-powered applications."
 } = Astro.props;
 ---
 
@@ -38,6 +39,14 @@ const {
   </head>
 
   <body>
-    <slot />
+    <!-- Interactive DotField Canvas Background -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+      <DotField client:load />
+    </div>
+
+    <div class="relative z-10">
+      <slot />
+    </div>
   </body>
 </html>
+

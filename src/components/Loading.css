@@ -1,0 +1,219 @@
+/* =============================================
+   Loading.css — 8-Bit Loading Screen
+   Adapted from 21st.dev component for
+   Astro + Tailwind CSS v4 (no shadcn/cn)
+   ============================================= */
+
+/* ---- Layout wrappers ---- */
+
+.loading-fullscreen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--space-black, #09090b);
+}
+
+.loading-default {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-inner {
+    width: 100%;
+    max-width: 28rem; /* ~448px */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+/* ---- Retro pixel font simulation via letter-spacing ---- */
+/* We use the project's heading font (Space Grotesk) with
+   uppercase + tight tracking to approximate 8-bit aesthetic */
+
+.retro-text {
+    font-family: 'Space Grotesk', 'JetBrains Mono', 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+    image-rendering: pixelated;
+}
+
+/* ---- Title ---- */
+
+.loading-title {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    color: var(--white, #ffffff);
+    text-align: center;
+    animation: loading-blink-text 1.6s ease-in-out infinite;
+}
+
+@keyframes loading-blink-text {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* ---- Progress section ---- */
+
+.loading-progress-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.loading-percent {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.loading-percent-label {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--zinc-500, #71717a);
+    letter-spacing: 0.05em;
+}
+
+/* ---- 8-bit Progress Bar ---- */
+
+.retro-progress-track {
+    width: 100%;
+    height: 1rem; /* 16px — chunky 8-bit bar */
+    background: var(--zinc-900, #18181b);
+    border: 2px solid var(--zinc-700, #3f3f46);
+    position: relative;
+    overflow: hidden;
+    /* Pixelated look: hard-edge shadow instead of rounded */
+    box-shadow:
+        inset 2px 2px 0 rgba(0, 0, 0, 0.6),
+        2px 2px 0 rgba(0, 0, 0, 0.4);
+    image-rendering: pixelated;
+}
+
+/* Scanline overlay for extra retro feel */
+.retro-progress-track::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        rgba(0, 0, 0, 0.15) 3px,
+        rgba(0, 0, 0, 0.15) 4px
+    );
+    pointer-events: none;
+    z-index: 2;
+}
+
+.retro-progress-fill {
+    height: 100%;
+    background: var(--white, #ffffff);
+    transition: width 0.25s steps(5, end);
+    position: relative;
+    z-index: 1;
+    /* Inner highlight for chunky pixel effect */
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* Shimmer animation on fill */
+.retro-progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.25),
+        transparent
+    );
+    animation: progress-shimmer 1.8s ease-in-out infinite;
+}
+
+@keyframes progress-shimmer {
+    0%   { left: -60%; }
+    100% { left: 120%; }
+}
+
+/* ---- Tips section ---- */
+
+.loading-tips-section {
+    width: 100%;
+    min-height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-tip-text {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: clamp(0.6rem, 1.5vw, 0.75rem);
+    color: var(--zinc-500, #71717a);
+    text-align: center;
+    line-height: 1.6;
+    text-transform: none;
+    letter-spacing: 0.03em;
+    animation: loading-blink-text 2.4s ease-in-out infinite;
+}
+
+/* ---- Blinking cursor dot ---- */
+
+.loading-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 12px;
+    background: var(--white, #ffffff);
+    margin-left: 4px;
+    vertical-align: middle;
+    animation: loading-cursor-blink 0.53s step-end infinite;
+}
+
+@keyframes loading-cursor-blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+}
+
+/* ---- Scanline overlay on fullscreen ---- */
+
+.loading-fullscreen::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 2px,
+        rgba(0, 0, 0, 0.06) 2px,
+        rgba(0, 0, 0, 0.06) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+.loading-fullscreen .loading-inner {
+    position: relative;
+    z-index: 2;
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 480px) {
+    .loading-inner {
+        padding: 1.5rem;
+        max-width: 100%;
+    }
+
+    .loading-title {
+        font-size: 0.9rem;
+    }
+}

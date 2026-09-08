@@ -1,240 +1,149 @@
-import { motion } from 'framer-motion';
-import { useRef, useEffect } from 'react';
-import ParallaxSection from './elements/ParallaxSection';
-import GradientText from './elements/GradientText';
-import { FaRocket } from 'react-icons/fa';
-import BlurText from './elements/BlurText'; // Komponen ini belum digunakan di kode awal, dapat dieksplorasi lebih lanjut
+import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
+import { useRef } from 'react';
+import profileImg from '../assets/profile.webp';
 import './Hero.css';
 
-const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.2,
-            delayChildren: 0.3,
-        },
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.14,
+      delayChildren: 0.1,
     },
+  },
 };
 
-const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.8,
-        },
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 25 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.215, 0.61, 0.355, 1] as [number, number, number, number],
     },
-};
-
-const titleVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-        opacity: 1,
-        scale: 1,
-        transition: {
-            duration: 1,
-        },
-    },
+  },
 };
 
 export default function Hero() {
-    const scrollToSection = (sectionId: string) => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-            const offsetTop = element.offsetTop - 80;
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth',
-            });
-        }
-    };
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
 
-    return (
-        <section id="home" className="hero">
-            <ParallaxSection offset={100}>
-                <motion.div
-                    className="hero-container"
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
-                >
-                    <motion.div className="hero-greeting" variants={itemVariants}>
-                        <span className="wave">👋</span> Hello, I am
-                    </motion.div>
+  const photoScale = useTransform(scrollYProgress, [0, 1], [1, 0.92]);
+  const photoOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.35]);
 
-                    <motion.div className="hero-title" variants={itemVariants} style={{ display: 'flex', justifyContent: 'center' }}>
-                        <GradientText
-                            colors={["#5227FF","#FF9FFC","#B19EEF"]}
-                            animationSpeed={8}
-                            showBorder={false}
-                            className="inline-block"
-                        >
-                            Fikri
-                        </GradientText>
-                    </motion.div>
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offsetTop = element.offsetTop - 70;
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth',
+      });
+    }
+  };
 
-                    <motion.div className="hero-subtitle-container" variants={itemVariants}>
-                        <h2 className="hero-subtitle">
-                            <span className="gradient-text">
-                                <GradientText
-                                    colors={["#5227FF","#FF9FFC","#B19EEF"]}
-                                    animationSpeed={8}
-                                    showBorder={false}
-                                    className="inline-block"
-                                >
-                                    Software Engineer & AI Enthusiast
-                                </GradientText>
-                            </span>
-                        </h2>
-                        <p className="hero-tagline">
-                            Architecting Scalable Platforms at the Intersection of Web Development, GIS, and Machine Learning.
-                        </p>
-                    </motion.div>
+  return (
+    <section id="home" className="hero-editorial" ref={heroRef}>
+      {/* Atmospheric blur orbs — Syed Moinuddin style */}
+      <div className="hero-orb hero-orb-1" aria-hidden="true" />
+      <div className="hero-orb hero-orb-2" aria-hidden="true" />
+      <div className="hero-orb hero-orb-3" aria-hidden="true" />
+      <motion.div
+        className="hero-content"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {/* Availability Badge */}
+        <motion.div variants={itemVariants} className="hero-badge-wrapper">
+          <div className="hero-status-pill">
+            <span className="radar-container">
+              <span className="radar-ping"></span>
+              <span className="radar-dot"></span>
+            </span>
+            <span className="status-label">AVAILABLE FOR NEW OPPORTUNITIES</span>
+          </div>
+        </motion.div>
 
-                    <motion.div className="hero-description" variants={itemVariants}>
-                        Specializing in full-stack engineering, spatiotemporal data rendering, and AI-augmented solutions. Dedicated to implementing <em>Clean Architecture</em> using modern ecosystems like React, Next.js, and Laravel to solve complex multidimensional problems.
-                    </motion.div>
+        {/* Typography & Overlapping Portrait Stage */}
+        <motion.div variants={itemVariants} className="hero-stage">
+          {/* Oversized Background/Foreground Name */}
+          <h1 className="hero-giant-name">
+            AHMAD<br />FIKRI HANIF
+          </h1>
 
-                    <motion.div className="hero-buttons" variants={itemVariants}>
-                        <button
-                            className="cosmic-button"
-                            onClick={() => scrollToSection('projects')}
-                        >
-                            Explore Enterprise Projects
-                        </button>
-                        <button
-                            className="cosmic-button cosmic-button-outline"
-                            onClick={() => window.open('/resume.pdf', '_blank')}
-                        >
-                            View Academic Resume
-                        </button>
-                    </motion.div>
+          {/* Overlapping Grayscale Portrait */}
+          <motion.div
+            className="hero-overlapping-portrait"
+            style={{
+              scale: photoScale,
+              opacity: photoOpacity,
+            }}
+          >
+            <img
+              src={profileImg.src}
+              alt="Ahmad Fikri Hanif"
+              className="portrait-img"
+              width={220}
+              height={290}
+              fetchPriority="high"
+            />
+            <div className="portrait-border-glow"></div>
+          </motion.div>
+        </motion.div>
 
-                    <motion.div
-                        className="hero-scroll-indicator"
-                        variants={itemVariants}
-                        animate={{
-                            y: [0, 10, 0],
-                        }}
-                        transition={{
-                            duration: 1.5,
-                            repeat: Infinity,
-                            ease: 'easeInOut',
-                        }}
-                    >
-                        <div className="scroll-line" />
-                        <span className="scroll-text">Scroll Down</span>
-                    </motion.div>
-                </motion.div>
-            </ParallaxSection>
+        {/* Role & Engineering Positioning */}
+        <motion.div variants={itemVariants} className="hero-positioning">
+          <h2 className="hero-role-tag">
+            Computer Science Student <span className="meta-dot">·</span> Software Engineer
+          </h2>
+          <p className="hero-statement">
+            Building practical web systems, robust REST APIs, and applied machine learning solutions with clean architecture.
+          </p>
+        </motion.div>
 
-            {/* Floating Elements Tetap Dipertahankan untuk Estetika Visual */}
-            <motion.div
-                className="hero-floating-element element-1"
-                animate={{
-                    y: [0, -30, 0],
-                    x: [0, 30, 0],
-                    rotate: [45, 55, 35, 45], 
-                }}
-                transition={{
-                    duration: 8,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                }}
-            >
-                <div className="floating-icon rocket-icon">
-                    {/* -45deg aligns the top-right pointing FaRocket to straight UP */}
-                    <FaRocket style={{transform: "rotate(-45deg)"}} />
-                    <motion.div
-                        className="rocket-exhaust"
-                        animate={{
-                            scale: [1, 1.3, 1],
-                            opacity: [0.8, 0.4, 0.8],
-                        }}
-                        transition={{
-                            duration: 0.3,
-                            repeat: Infinity,
-                        }}
-                    >
-                        💨
-                    </motion.div>
-                </div>
-            </motion.div>
+        {/* Clean Action Buttons */}
+        <motion.div variants={itemVariants} className="hero-cta-row">
+          <button
+            onClick={() => scrollToSection('projects')}
+            className="btn-primary-editorial"
+          >
+            Explore Projects
+            <svg className="btn-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </button>
+          <button
+            onClick={() => scrollToSection('contact')}
+            className="btn-outline-editorial"
+          >
+            Get in Touch
+          </button>
+        </motion.div>
 
-            <motion.div
-                className="hero-floating-element element-2"
-                animate={{
-                    y: [0, 40, 0],
-                    rotate: [0, -15, 0],
-                    scale: [1, 1.1, 1],
-                }}
-                transition={{
-                    duration: 7,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                }}
-            >
-                <motion.div
-                    className="floating-icon"
-                    animate={{
-                        rotate: [0, 360],
-                    }}
-                    transition={{
-                        duration: 10,
-                        repeat: Infinity,
-                        ease: "linear",
-                    }}
-                >
-                    ⭐
-                </motion.div>
-            </motion.div>
-
-            <motion.div
-                className="hero-floating-element element-3"
-                animate={{
-                    y: [0, -30, 0],
-                    x: [0, -20, 0],
-                    scale: [1, 1.2, 1],
-                }}
-                transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                }}
-            >
-                <motion.div
-                    className="floating-icon"
-                    animate={{
-                        rotate: [0, -360],
-                        scale: [1, 1.3, 1],
-                    }}
-                    transition={{
-                        duration: 8,
-                        repeat: Infinity,
-                        ease: "linear",
-                    }}
-                >
-                    🌙
-                </motion.div>
-            </motion.div>
-
-            <motion.div
-                className="hero-floating-element element-4"
-                animate={{
-                    x: [-100, typeof window !== 'undefined' ? window.innerWidth + 100 : 2000],
-                    y: [0, 100],
-                }}
-                transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    repeatDelay: 5,
-                    ease: "easeIn",
-                }}
-            >
-                <div className="floating-icon">🚀</div>
-            </motion.div>
-        </section>
-    );
+        {/* Metadata Footer Strip */}
+        <motion.div variants={itemVariants} className="hero-meta-strip">
+          <div className="meta-col">
+            <span className="meta-label">LOCATION</span>
+            <span className="meta-value">Lampung, Indonesia</span>
+          </div>
+          <div className="meta-divider"></div>
+          <div className="meta-col">
+            <span className="meta-label">FOCUS</span>
+            <span className="meta-value">Fullstack & Applied AI</span>
+          </div>
+          <div className="meta-divider"></div>
+          <div className="meta-col">
+            <span className="meta-label">EDUCATION</span>
+            <span className="meta-value">Universitas Lampung (Sem 7)</span>
+          </div>
+        </motion.div>
+      </motion.div>
+    </section>
+  );
 }

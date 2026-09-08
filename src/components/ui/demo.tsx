@@ -1,0 +1,25 @@
+"use client";
+
+import { RulerCarousel, type CarouselItem } from "@/components/ui/ruler-carousel";
+
+export function Demo() {
+  const originalItems: CarouselItem[] = [
+    { id: 1, title: "NIKE" },
+    { id: 2, title: "ALO" },
+    { id: 3, title: "CONVERSE" },
+    { id: 4, title: "UNIQLO" },
+    { id: 5, title: "ON CLOUD" },
+    { id: 6, title: "SKIMS" },
+    { id: 7, title: "ADIDAS" },
+    { id: 8, title: "PUMA" },
+    { id: 9, title: "REEBOK" },
+  ];
+  return (
+    <div className="w-full overflow-hidden flex items-center justify-center">
+      <RulerCarousel originalItems={originalItems} />
+    </div>
+  );
+}
+
+export { Floating3DCard as DemoOne } from "@/components/ui/3d-card";
+export { CardDialog, CardDialog as Component } from "@/components/ui/card-dialog";

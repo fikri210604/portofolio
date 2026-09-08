@@ -1,8 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import './Navbar.css';
-import GradientText from './elements/GradientText';
-import MusicPlayer from './MusicPlayer';
 
 interface NavLink {
   name: string;
@@ -10,9 +8,11 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
+  { name: 'Experience', href: '#experience' },
+  { name: 'Stack', href: '#skills' },
   { name: 'Projects', href: '#projects' },
+  { name: 'Activity', href: '#github-activity' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -22,36 +22,66 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    // Observe sections to set active navigation link
+    const sections = navLinks
+      .map((link) => document.getElementById(link.href.substring(1)))
+      .filter((el): el is HTMLElement => !!el);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: '-40% 0px -40% 0px', threshold: 0 }
+    );
+    sections.forEach((section) => observer.observe(section));
+
+    // Simple scroll listener for navbar background change
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-
-      const sections = navLinks.map(link => link.href.substring(1));
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            setActiveSection(section);
-            break;
-          }
-        }
+      if (window.scrollY < 100) {
+        setActiveSection('home');
       }
     };
-
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Run once to set initial state
+    handleScroll();
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const targetId = href.substring(1);
-    const element = document.getElementById(targetId);
 
+    if (targetId === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setIsMobileMenuOpen(false);
+      return;
+    }
+
+    const element = document.getElementById(targetId);
     if (element) {
-      const offsetTop = element.offsetTop - 80;
+      // If the element is pinned by GSAP ScrollTrigger, its true anchor in page flow is .pin-spacer
+      const pinSpacer = element.closest('.pin-spacer');
+      const target = pinSpacer || element;
+      const rect = target.getBoundingClientRect();
+      const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+      // Pinned fullscreen section (#experience) starts at top top (no offset needed)
+      // Standard sections leave 80px offset for floating navbar
+      const offset = targetId === 'experience' ? 0 : 80;
+      const targetY = rect.top + currentScrollY - offset;
+
       window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
+        top: Math.max(0, targetY),
+        behavior: 'smooth',
       });
       setIsMobileMenuOpen(false);
     }
@@ -71,17 +101,11 @@ export default function Navbar() {
           href="#home"
           className="navbar-logo"
           onClick={(e) => handleNavClick(e, '#home')}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ opacity: 0.8 }}
         >
-          <GradientText
-            colors={["#5227FF","#FF9FFC","#B19EEF"]}
-            animationSpeed={8}
-            showBorder={false}
-            className="inline-block"
-          >
-            AFH
-          </GradientText>
+          <span className="font-heading font-bold tracking-tight text-zinc-100 text-lg">
+            AFH<span className="text-zinc-500">.</span>
+          </span>
         </motion.a>
 
         {/* Kolom Tengah: Desktop Navigation */}
@@ -117,7 +141,6 @@ export default function Navbar() {
         {/* Kolom Kanan: Actions + Mobile Menu Button */}
         <div className="navbar-actions">
           <div className="social-links-nav" style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-            <MusicPlayer />
             <div className="desktop-only-socials">
               <a href="https://github.com/fikri210604" target="_blank" rel="noopener noreferrer" className="nav-social-icon" aria-label="GitHub">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">

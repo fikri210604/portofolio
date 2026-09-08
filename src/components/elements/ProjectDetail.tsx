@@ -8,7 +8,8 @@ interface ProjectDetailProps {
   project: {
     title: string;
     description: string;
-    image: string;
+    image?: string;
+    icon?: string;
     tags: string[];
     liveUrl?: string;
     githubUrl?: string;
@@ -92,11 +93,17 @@ export default function ProjectDetail({
 
             {/* Image */}
             <div className="modal-image-wrapper">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="modal-image"
-              />
+              {project.image ? (
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="modal-image"
+                />
+              ) : (
+                <div className="modal-image-placeholder" aria-hidden="true">
+                  <span>{project.icon ?? "💻"}</span>
+                </div>
+              )}
             </div>
 
             {/* Content */}

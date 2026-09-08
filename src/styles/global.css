@@ -1,38 +1,94 @@
 /* Import Tailwind */
 @import "tailwindcss";
 
-/* CSS Variables - Space Theme */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+/* CSS Variables - Minimal Editorial Theme (Syed Moinuddin Inspiration) */
 :root {
+    /* Shadcn Theme Variables */
+    --background: #09090b;
+    --foreground: #f4f4f5;
+    --card: #121215;
+    --card-foreground: #f4f4f5;
+    --popover: #121215;
+    --popover-foreground: #f4f4f5;
+    --primary: #ffffff;
+    --primary-foreground: #09090b;
+    --secondary: #27272a;
+    --secondary-foreground: #f4f4f5;
+    --muted: #18181b;
+    --muted-foreground: #a1a1aa;
+    --accent: #27272a;
+    --accent-foreground: #f4f4f5;
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+    --border: rgba(255, 255, 255, 0.1);
+    --input: rgba(255, 255, 255, 0.15);
+    --ring: rgba(255, 255, 255, 0.3);
+
     /* Primary Colors */
-    --space-black: #0a0a0f;
-    --space-dark: #13131a;
-    --cosmic-purple: #6b4ce6;
-    --cosmic-blue: #4e73df;
-    --cosmic-pink: #e74c8f;
-    --stellar-cyan: #00d4ff;
-    --nebula-orange: #ff6b35;
+    --space-black: #09090b;
+    --space-dark: #121215;
+    --surface-card: #141418;
+    --surface-border: rgba(255, 255, 255, 0.08);
 
-    /* Neutral Colors */
+    /* Neutral Scale */
     --white: #ffffff;
-    --gray-100: #f8f9fc;
-    --gray-200: #e3e6ed;
-    --gray-300: #b8bfce;
-    --gray-500: #6c757d;
-    --gray-700: #3a3f51;
-    --gray-900: #1a1d26;
+    --zinc-100: #f4f4f5;
+    --zinc-200: #e4e4e7;
+    --zinc-300: #d4d4d8;
+    --zinc-400: #a1a1aa;
+    --zinc-500: #71717a;
+    --zinc-600: #52525b;
+    --zinc-700: #3f3f46;
+    --zinc-800: #27272a;
+    --zinc-900: #18181b;
 
-    /* Glass Effects */
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-hover: rgba(255, 255, 255, 0.08);
+    /* Legacy Fallbacks for existing components */
+    --gray-100: #f4f4f5;
+    --gray-200: #e4e4e7;
+    --gray-300: #a1a1aa;
+    --gray-500: #71717a;
+    --gray-700: #3f3f46;
+    --gray-900: #18181b;
+
+    /* Refined Accents (Restrained) */
+    --cosmic-purple: #ffffff;
+    --cosmic-blue: #a1a1aa;
+    --stellar-cyan: #d4d4d8;
+
+    /* Glass / Surface Effects */
+    --glass-bg: rgba(24, 24, 27, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-hover: rgba(39, 39, 42, 0.8);
 
     /* Typography */
     --font-heading: 'Space Grotesk', sans-serif;
     --font-body: 'Inter', sans-serif;
 
     /* Spacing */
-    --section-padding: 100px;
-    --container-max: 1200px;
+    --section-padding: 120px;
+    --container-max: 1280px;
 }
 
 /* Base Styles */
@@ -52,14 +108,14 @@ body {
     width: 100%;
     min-height: 100vh;
     background: var(--space-black);
-    color: var(--white);
+    color: var(--zinc-100);
     font-family: var(--font-body);
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
 }
 
-/* Background Gradient */
+/* Background Atmosphere - Clean Monochrome Editorial */
 body::before {
     content: '';
     position: fixed;
@@ -67,8 +123,8 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(ellipse at top, rgba(107, 76, 230, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at bottom, rgba(78, 115, 223, 0.15) 0%, transparent 50%);
+    background: radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.04) 0%, transparent 65%),
+        radial-gradient(ellipse at 50% 100%, rgba(0, 0, 0, 0.6) 0%, transparent 80%);
     pointer-events: none;
     z-index: -1;
 }
@@ -82,42 +138,45 @@ h5,
 h6 {
     font-family: var(--font-heading);
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
     margin-bottom: 1rem;
+    color: var(--white);
 }
 
 h1 {
-    font-size: clamp(2.5rem, 8vw, 4rem);
-    background: linear-gradient(135deg, var(--white) 0%, var(--stellar-cyan) 100%);
+    font-size: clamp(3rem, 9vw, 6rem);
+    background: linear-gradient(180deg, var(--white) 0%, var(--zinc-400) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
 h2 {
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
     color: var(--white);
+    letter-spacing: -0.03em;
 }
 
 h3 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    color: var(--gray-100);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    color: var(--zinc-100);
 }
 
 p {
-    font-size: 1.125rem;
-    color: var(--gray-300);
+    font-size: 1.0625rem;
+    color: var(--zinc-400);
     margin-bottom: 1rem;
 }
 
 a {
-    color: var(--stellar-cyan);
+    color: var(--zinc-200);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: all 0.2s ease;
 }
 
 a:hover {
-    color: var(--cosmic-purple);
+    color: var(--white);
 }
 
 /* Container */

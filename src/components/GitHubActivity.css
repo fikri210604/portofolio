@@ -1,150 +1,338 @@
-.github-activity {
-    padding: 100px 0;
-    position: relative;
-    z-index: 10;
-    max-width: 1200px;
-    margin: 0 auto;
-.section-subtitle {
-    font-size: 1.1rem;
-    color: var(--gray-400);
-    margin-top: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
+/* GitHub Activity Editorial Section */
+.github-editorial {
+  padding: 50px 1.5rem 40px;
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.github-container {
+  width: 100%;
+}
+
+.github-header {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.github-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.85rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #f4f4f5;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.github-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: #a1a1aa;
+  max-width: 680px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.github-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Calendar Container */
+.github-calendar-container {
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: rgba(13, 17, 23, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.calendar-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.calendar-title-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.calendar-total-badge {
+  font-size: 0.75rem;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
 }
 
 .live-indicator {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.2rem 0.6rem;
-    background: rgba(38, 166, 65, 0.1);
-    border: 1px solid rgba(38, 166, 65, 0.2);
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #39d353;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.65rem;
+  background: rgba(39, 39, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-family: var(--font-mono, monospace);
+  font-weight: 500;
+  color: #a1a1aa;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .pulse-dot {
-    width: 6px;
-    height: 6px;
-    background-color: #39d353;
-    border-radius: 50%;
-    position: relative;
+  width: 6px;
+  height: 6px;
+  background-color: #22c55e;
+  border-radius: 50%;
+  position: relative;
 }
 
 .pulse-dot::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #39d353;
-    border-radius: 50%;
-    animation: pulse-live 2s infinite;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #22c55e;
+  border-radius: 50%;
+  animation: pulse-live 2s infinite ease-out;
 }
 
 @keyframes pulse-live {
-    0% {
-        transform: scale(1);
-        opacity: 0.8;
-    }
-
-    100% {
-        transform: scale(3);
-        opacity: 0;
-    }
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(3); opacity: 0; }
 }
 
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    margin-top: 3rem;
+/* Scroll Box & Native Grid */
+.calendar-scroll-box {
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
 }
 
-.github-calendar-container {
-    padding: 2.5rem;
-    overflow-x: auto;
-    border-radius: 20px;
-    background: rgba(13, 17, 23, 0.7); /* Darker GitHub-like bg */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+.native-contribution-grid {
+  display: flex;
+  gap: 3.5px;
+  min-width: 780px;
 }
 
-.calendar-wrapper {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    min-width: 800px; /* Ensure map doesn't squish too much */
+.grid-week-col {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5px;
 }
 
-/* Override react-github-calendar text colors */
-.calendar-wrapper text {
-    fill: #8b949e !important;
+.grid-day-cell {
+  width: 11.5px;
+  height: 11.5px;
+  border-radius: 2.5px;
+  transition: transform 0.15s ease, filter 0.15s ease;
+  cursor: pointer;
 }
 
+.grid-day-cell:hover {
+  transform: scale(1.35);
+  filter: brightness(1.2);
+  z-index: 2;
+}
+
+/* Calendar Footer */
+.calendar-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.legend-cells {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.legend-cell {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+/* GitHub Stats Container */
 .github-stats-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 1.5rem;
 }
 
 .stat-card {
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: rgba(13, 17, 23, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: rgba(13, 17, 23, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+  gap: 1.25rem;
 }
 
 .stat-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px -10px rgba(82, 39, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.16);
+  transform: translateY(-2px);
+}
+
+.stat-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .card-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--text-primary);
-    text-align: left;
-    width: 100%;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #e4e4e7;
+  margin: 0;
 }
 
-.stat-image {
-    width: 100%;
-    max-width: 450px;
-    border-radius: 8px;
-    object-fit: contain;
+.stat-card-icon {
+  font-size: 1.25rem;
 }
 
-/* Responsive Design */
+/* Metric Boxes */
+.metrics-numeric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.metric-box {
+  background: rgba(24, 24, 27, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.metric-icon-wrap {
+  font-size: 1rem;
+}
+
+.metric-number {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #fafafa;
+  line-height: 1;
+}
+
+.metric-label {
+  font-size: 0.68rem;
+  color: #a1a1aa;
+  margin-top: 0.2rem;
+  display: block;
+}
+
+.github-profile-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: #818cf8;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.github-profile-link:hover {
+  color: #a5b4fc;
+  transform: translateX(2px);
+}
+
+/* Language Progress Bar */
+.lang-progress-bar {
+  display: flex;
+  height: 8px;
+  border-radius: 9999px;
+  overflow: hidden;
+  background: #27272a;
+}
+
+.lang-progress-segment {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.lang-list-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.lang-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.lang-color-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.lang-pct {
+  margin-left: auto;
+}
+
 @media screen and (max-width: 992px) {
-    .github-stats-container {
-        grid-template-columns: 1fr;
-    }
+  .github-stats-container {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media screen and (max-width: 768px) {
-    .github-activity {
-        padding: 60px 0;
-    }
-    
-    .github-calendar-container {
-        padding: 1.5rem;
-        /* Allow scrolling on mobile instead of shrinking */
-        justify-content: flex-start; 
-    }
-    
-    .calendar-wrapper {
-        justify-content: flex-start;
-    }
+  .github-editorial {
+    padding: 40px 1rem 30px;
+  }
+
+  .metrics-numeric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lang-list-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

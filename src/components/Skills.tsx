@@ -1,95 +1,82 @@
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, type Variants } from 'framer-motion';
 import { useRef } from 'react';
+import { RulerCarousel, type CarouselItem } from '@/components/ui/ruler-carousel';
+import {
+  SiFastapi,
+  SiLaravel,
+  SiPython,
+  SiPostgresql,
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiScikitlearn,
+  SiSupabase,
+  SiFlutter,
+} from 'react-icons/si';
 import './Skills.css';
 
-const skills = [
-    { name: 'React', icon: '⚛️', level: 90, category: 'Frontend' },
-    { name: 'TypeScript', icon: '📘', level: 85, category: 'Frontend' },
-    { name: 'JavaScript', icon: '💛', level: 95, category: 'Frontend' },
-    { name: 'HTML/CSS', icon: '🎨', level: 90, category: 'Frontend' },
-    { name: 'Node.js', icon: '🟢', level: 85, category: 'Backend' },
-    { name: 'Python', icon: '🐍', level: 80, category: 'Backend' },
-    { name: 'PostgreSQL', icon: '🐘', level: 75, category: 'Database' },
-    { name: 'MongoDB', icon: '🍃', level: 80, category: 'Database' },
-    { name: 'Docker', icon: '🐳', level: 70, category: 'DevOps' },
-    { name: 'Git', icon: '📦', level: 90, category: 'Tools' },
-    { name: 'AWS', icon: '☁️', level: 65, category: 'Cloud' },
-    { name: 'Next.js', icon: '▲', level: 85, category: 'Framework' },
-];
-
-const fadeInUp = {
-    hidden: { opacity: 0, y: 60 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.6,
-        },
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.55,
+      ease: [0.16, 1, 0.3, 1],
     },
+  },
 };
 
+const techItems: CarouselItem[] = [
+  { id: 1, title: 'FASTAPI', category: 'Backend & Systems', icon: SiFastapi },
+  { id: 2, title: 'PYTHON', category: 'AI & Data Science', icon: SiPython },
+  { id: 3, title: 'LARAVEL', category: 'Backend Architecture', icon: SiLaravel },
+  { id: 4, title: 'POSTGRESQL', category: 'Database Telemetry', icon: SiPostgresql },
+  { id: 5, title: 'NEXT.JS', category: 'Modern Web Framework', icon: SiNextdotjs },
+  { id: 6, title: 'TYPESCRIPT', category: 'Full-Stack Engineering', icon: SiTypescript },
+  { id: 7, title: 'SCIKIT-LEARN', category: 'Machine Learning', icon: SiScikitlearn },
+  { id: 8, title: 'SUPABASE', category: 'Cloud Infrastructure', icon: SiSupabase },
+  { id: 9, title: 'FLUTTER', category: 'Cross-Platform Mobile', icon: SiFlutter },
+  { id: 10, title: 'TAILWIND CSS', category: 'Design Systems', icon: SiTailwindcss },
+];
+
 export default function Skills() {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { amount: 0.3 });
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, { amount: 0.2, once: true });
 
-    return (
-        <section id="skills" className="skills" ref={ref}>
-            <div className="container">
-                <motion.div
-                    className="section-header"
-                    initial="hidden"
-                    animate={isInView ? 'visible' : 'hidden'}
-                    variants={fadeInUp}
-                >
-                    <h2>Skills & Technologies</h2>
-                    <p className="section-subtitle">My technical expertise</p>
-                </motion.div>
+  return (
+    <section id="skills" className="skills-editorial" ref={ref}>
+      <div className="skills-container">
+        {/* Section Header */}
+        <motion.div
+          className="skills-header text-center mx-auto"
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          variants={fadeInUp}
+        >
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-indigo-500/20 bg-indigo-500/10 text-indigo-400 text-xs font-mono mb-4">
+            <span>03. TECHNOLOGY & TOOLCHAIN</span>
+          </div>
+          <h2 className="skills-title">Verified Capabilities &amp; Stack.</h2>
+          <p className="skills-subtitle mx-auto">
+            Interactive overview of core technologies deployed across production systems, 
+            research, and client platforms.
+          </p>
+        </motion.div>
 
-                <motion.div
-                    className="skills-grid"
-                    initial="hidden"
-                    animate={isInView ? 'visible' : 'hidden'}
-                    variants={{
-                        visible: {
-                            transition: {
-                                staggerChildren: 0.08,
-                            },
-                        },
-                    }}
-                >
-                    {skills.map((skill, index) => (
-                        <motion.div
-                            key={index}
-                            className="skill-card glass-card"
-                            variants={fadeInUp}
-                            whileHover={{
-                                scale: 1.05,
-                                transition: { duration: 0.2 },
-                            }}
-                        >
-                            <div className="skill-icon">{skill.icon}</div>
-                            <h3 className="skill-name">{skill.name}</h3>
-                            <p className="skill-category">{skill.category}</p>
-
-                            <div className="skill-progress-container">
-                                <div className="skill-progress-bg">
-                                    <motion.div
-                                        className="skill-progress-fill"
-                                        initial={{ width: 0 }}
-                                        animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
-                                        transition={{
-                                            duration: 1,
-                                            delay: index * 0.08 + 0.3,
-                                            ease: 'easeOut',
-                                        }}
-                                    />
-                                </div>
-                                <span className="skill-level">{skill.level}%</span>
-                            </div>
-                        </motion.div>
-                    ))}
-                </motion.div>
-            </div>
-        </section>
-    );
+        {/* Clean, Focused Interactive Carousel */}
+        <motion.div
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          variants={fadeInUp}
+          className="w-full mt-4"
+        >
+          <RulerCarousel originalItems={techItems}
+            autoplay={true}
+            autoplayInterval={1000}
+          />
+        </motion.div>
+      </div>
+    </section>
+  );
 }

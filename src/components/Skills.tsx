@@ -10,8 +10,13 @@ import {
   SiTypescript,
   SiTailwindcss,
   SiScikitlearn,
+  SiPandas,
+  SiGit,
+  SiFigma,
+  SiMysql,
+  SiReact,
+  SiPhp,
   SiSupabase,
-  SiFlutter,
 } from 'react-icons/si';
 import './Skills.css';
 
@@ -28,16 +33,20 @@ const fadeInUp: Variants = {
 };
 
 const techItems: CarouselItem[] = [
-  { id: 1, title: 'FASTAPI', category: 'Backend & Systems', icon: SiFastapi },
-  { id: 2, title: 'PYTHON', category: 'AI & Data Science', icon: SiPython },
-  { id: 3, title: 'LARAVEL', category: 'Backend Architecture', icon: SiLaravel },
-  { id: 4, title: 'POSTGRESQL', category: 'Database Telemetry', icon: SiPostgresql },
-  { id: 5, title: 'NEXT.JS', category: 'Modern Web Framework', icon: SiNextdotjs },
+  { id: 1, title: 'NEXT.JS', category: 'Modern Web Framework', icon: SiNextdotjs },
+  { id: 2, title: 'SUPABASE', category: 'Database & Backend', icon: SiSupabase },
+  { id: 3, title: 'PYTHON', category: 'Data & Machine Learning', icon: SiPython },
+  { id: 4, title: 'LARAVEL', category: 'Backend Architecture', icon: SiLaravel },
+  { id: 5, title: 'PHP', category: 'Backend Development', icon: SiPhp },
   { id: 6, title: 'TYPESCRIPT', category: 'Full-Stack Engineering', icon: SiTypescript },
-  { id: 7, title: 'SCIKIT-LEARN', category: 'Machine Learning', icon: SiScikitlearn },
-  { id: 8, title: 'SUPABASE', category: 'Cloud Infrastructure', icon: SiSupabase },
-  { id: 9, title: 'FLUTTER', category: 'Cross-Platform Mobile', icon: SiFlutter },
-  { id: 10, title: 'TAILWIND CSS', category: 'Design Systems', icon: SiTailwindcss },
+  { id: 7, title: 'FASTAPI', category: 'REST API & ML Services', icon: SiFastapi },
+  { id: 8, title: 'POSTGRESQL', category: 'Relational Database', icon: SiPostgresql },
+  { id: 9, title: 'MYSQL', category: 'Database Systems', icon: SiMysql },
+  { id: 10, title: 'SCIKIT-LEARN', category: 'Applied Machine Learning', icon: SiScikitlearn },
+  { id: 11, title: 'PANDAS', category: 'Data Science & Analysis', icon: SiPandas },
+  { id: 12, title: 'TAILWIND CSS', category: 'Design Systems', icon: SiTailwindcss },
+  { id: 13, title: 'GIT & GITHUB', category: 'Version Control & CI', icon: SiGit },
+  { id: 14, title: 'FIGMA', category: 'UI/UX & Prototyping', icon: SiFigma },
 ];
 
 export default function Skills() {

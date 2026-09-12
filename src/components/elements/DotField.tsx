@@ -66,7 +66,7 @@ const DotField = memo(({
     if (!canvas) return;
     const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     let resizeTimer: ReturnType<typeof setTimeout>;
 
     function resize() {
@@ -136,8 +136,22 @@ const DotField = memo(({
     const speedInterval = setInterval(updateMouseSpeed, 20);
 
     let frameCount = 0;
+    let isVisible = !document.hidden;
+
+    // Pause animation loop when tab is not visible (saves CPU/battery)
+    function onVisibilityChange() {
+      isVisible = !document.hidden;
+      if (isVisible && !rafRef.current) {
+        rafRef.current = requestAnimationFrame(tick);
+      }
+    }
+    document.addEventListener('visibilitychange', onVisibilityChange);
 
     function tick() {
+      if (!isVisible) {
+        rafRef.current = null;
+        return;
+      }
       frameCount++;
       const dots = dotsRef.current;
       const m = mouseRef.current;
@@ -250,6 +264,7 @@ const DotField = memo(({
       clearTimeout(resizeTimer);
       window.removeEventListener('resize', resize);
       window.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

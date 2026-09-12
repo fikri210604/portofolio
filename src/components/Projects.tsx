@@ -2,6 +2,8 @@ import { motion, useInView, type Variants } from "framer-motion";
 import { useRef, useState, type ReactNode } from "react";
 import { FaGithub, FaArrowRight } from "react-icons/fa";
 import ProjectDetail from "./elements/ProjectDetail";
+import { CoverflowCarousel } from "@/components/ui/coverflow-carousel";
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 import "./Projects.css";
 
 import fishygoImg from "../assets/projects/fishygo.webp";
@@ -12,6 +14,7 @@ import suratMenyuratImg from "../assets/projects/surat-menyurat.webp";
 import otolinkImg from "../assets/projects/otolink.webp";
 
 // Individual project detail components
+import MentorBelajarkuDetail from "./projects/MentorBelajarku";
 import FishyGoDetail from "./projects/FishyGo";
 import AgrotechDetail from "./projects/Agrotech";
 import DeteksiCabaiDetail from "./projects/DeteksiCabai";
@@ -39,12 +42,38 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "Mentor Belajarku — Digital Tutoring Ecosystem",
+    role: "Full-Stack Developer & System Architect",
+    shortDescription:
+      "Full-stack digital ecosystem built with Next.js & Supabase, transforming tutoring operations: scheduling, attendance, learning records, session recaps, and tutor compensation.",
+    description:
+      "Building a digital ecosystem for Mentor Belajarku using Next.js and Supabase to gradually transform and integrate tutoring operations into a structured digital platform. Currently developing the initial operational system covering scheduling, tutoring sessions, student attendance, learning records, meeting recaps, and tutor compensation. Designing the system around real operational workflows and user needs rather than simply digitizing existing spreadsheet processes.",
+    icon: "📚",
+    tags: ["Next.js", "TypeScript", "React", "Supabase", "PostgreSQL", "Tailwind CSS", "System Architecture"],
+    year: "2026 (Ongoing)",
+    slug: "mentor-belajarku",
+    detailComponent: MentorBelajarkuDetail,
+  },
+  {
+    title: "SkillBridge AI — Job Recommendation System",
+    role: "Machine Learning Engineer",
+    shortDescription:
+      "Data-driven career recommendation system utilizing NLP (SBERT) and Machine Learning (XGBoost) to deliver accurate job opportunity matches.",
+    description:
+      "Developed a data-driven job recommendation system to help users discover job opportunities based on their profiles and skills. Applied machine learning and natural language processing to process job information and improve the relevance of recommendations.",
+    icon: "🤖",
+    tags: ["Python", "FastAPI", "SBERT", "XGBoost", "Machine Learning", "Next.js"],
+    year: "2025",
+    slug: "skillbridge-ai",
+    detailComponent: SkillBridgeAIDetail,
+  },
+  {
     title: "Sistem Informasi KKN Universitas Lampung",
     role: "Backend Architect & Developer",
     shortDescription:
-      "Backend sistem informasi KKN tingkat universitas dengan Laravel & RESTful API, mengelola integrasi multi-user, autentikasi, dan validasi data kompleks.",
+      "Web-based information system to support digital management, coordination, and administrative validation of KKN activities at Universitas Lampung.",
     description:
-      "Mengembangkan backend sistem informasi Kuliah Kerja Nyata (KKN) Universitas Lampung menggunakan Laravel dan REST API. Merancang serta mengimplementasikan endpoint API untuk mendukung integrasi dengan sisi frontend, termasuk pengelolaan basis data, autentikasi, otorisasi, validasi data, dan logika bisnis aplikasi.",
+      "Developing a web-based information system to support the management of Kuliah Kerja Nyata (KKN) activities at Universitas Lampung. Designing the system to improve the digital management and coordination of KKN processes.",
     icon: "🏫",
     tags: ["Laravel", "PHP", "REST API", "PostgreSQL", "Database Architecture"],
     year: "2026",
@@ -52,17 +81,17 @@ const projects: Project[] = [
     detailComponent: KKNSystemDetail,
   },
   {
-    title: "SkillBridge AI – Job Recommendation System",
-    role: "Machine Learning Engineer",
+    title: "TerraGuard AI — Disaster Risk Prediction",
+    role: "Data Scientist & ML Engineer",
     shortDescription:
-      "Sistem rekomendasi karir berbasis NLP, membandingkan TF-IDF dengan SBERT (all-MiniLM-L6-v2) dan XGBoost classifier terintegrasi MLflow.",
+      "Data-driven disaster risk prediction system using environmental data and Random Forest models to provide risk awareness across Lampung.",
     description:
-      "Mengembangkan sistem rekomendasi pekerjaan berbasis Information Retrieval dan Machine Learning. Membandingkan pendekatan TF-IDF dengan SBERT (all-MiniLM-L6-v2) untuk representasi dan pencocokan teks, serta menggunakan XGBoost sebagai model klasifikasi dengan akurasi pengujian sekitar 70,7%. Eksperimen dan pelacakan model didukung MLflow dan DagsHub.",
-    icon: "🤖",
-    tags: ["Python", "FastAPI", "SBERT", "XGBoost", "MLflow", "Next.js"],
+      "Developed a data-driven disaster risk prediction system to provide information about potential disaster risks in Lampung. Explored the use of environmental and disaster-related data to support risk awareness and decision-making.",
+    icon: "🌪️",
+    tags: ["Python", "Machine Learning", "Random Forest", "Scikit-Learn", "Pandas"],
     year: "2025",
-    slug: "skillbridge-ai",
-    detailComponent: SkillBridgeAIDetail,
+    slug: "terraguard-ai",
+    detailComponent: TerraGuardAIDetail,
   },
   {
     title: "FishyGo – Fisheries E-Commerce Platform",
@@ -77,19 +106,6 @@ const projects: Project[] = [
     year: "2025",
     slug: "fishygo-store",
     detailComponent: FishyGoDetail,
-  },
-  {
-    title: "TerraGuard AI – Disaster Risk Prediction",
-    role: "Data Scientist & ML Engineer",
-    shortDescription:
-      "Sistem pemodelan prediktif risiko bencana daerah menggunakan Random Forest dari fusi data spasial historis kebencanaan dan variabel cuaca.",
-    description:
-      "Mengembangkan sistem prediksi risiko bencana menggunakan data historis kebencanaan dan data cuaca. Menggunakan Random Forest untuk pemodelan risiko berdasarkan karakteristik wilayah dan kondisi lingkungan, melalui proses data preprocessing, feature engineering, pemodelan, dan evaluasi machine learning dengan Python.",
-    icon: "🌪️",
-    tags: ["Python", "Machine Learning", "Random Forest", "Scikit-Learn", "Pandas"],
-    year: "2025",
-    slug: "terraguard-ai",
-    detailComponent: TerraGuardAIDetail,
   },
   {
     title: "Chili Disease Detection System (AI)",
@@ -175,129 +191,107 @@ const fadeInUp: Variants = {
   },
 };
 
-function Project3DCard({
+function ProjectCardContent({
   project,
-  index,
-  isInView,
+  isSelected,
   onSelect,
 }: {
   project: Project;
-  index: number;
-  isInView: boolean;
+  isSelected: boolean;
   onSelect: (p: Project) => void;
 }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const isReverse = index % 2 === 1;
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const card = cardRef.current;
-    if (!card) return;
-
-    const { left, top, width, height } = card.getBoundingClientRect();
-    const x = e.clientX - left;
-    const y = e.clientY - top;
-
-    // Subtle, elegant 3D tilt for large cards
-    const rotateX = ((y - height / 2) / height) * -8;
-    const rotateY = ((x - width / 2) / width) * 8;
-
-    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
-  };
-
-  const handleMouseLeave = () => {
-    const card = cardRef.current;
-    if (!card) return;
-    card.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
-  };
-
   return (
-    <div className="project-card-wrap">
-      <motion.article
-        ref={cardRef}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        className={`project-card ${isReverse ? "reverse" : ""}`}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        variants={fadeInUp}
-      >
-        {/* Visual / Mockup Column (Floating Depth: translateZ 45px) */}
-        <div
-          className="project-visual-col"
-          style={{ transform: "translateZ(45px)", transformStyle: "preserve-3d" }}
-        >
-          <div className="browser-mockup">
-            <div className="browser-chrome">
-              <div className="browser-dots">
-                <span className="dot"></span>
-                <span className="dot"></span>
-                <span className="dot"></span>
-              </div>
-              <span className="browser-url">{project.slug || "project"}.dev</span>
-            </div>
-
-            <div className="browser-screen">
-              {project.image ? (
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="project-screen-img"
-                  loading="lazy"
-                />
-              ) : (
-                <div className="project-screen-fallback">
-                  <span className="fallback-icon">{project.icon || "⚙️"}</span>
-                  <span className="fallback-label">{project.role}</span>
-                  <span className="fallback-sub">Enterprise Backend & Service Architecture</span>
+    <CardContainer
+      enabled={isSelected}
+      containerClassName="w-full h-full p-0 flex items-stretch justify-center"
+      className="w-full h-full"
+    >
+      <CardBody className={`project-card ${isSelected ? "is-selected" : ""}`}>
+        {/* Visual / Mockup Column (Floating depth with translateZ) */}
+        <div className="project-visual-col">
+          <CardItem
+            translateZ={isSelected ? 40 : 0}
+            className="w-full"
+          >
+            <div className="browser-mockup">
+              <div className="browser-chrome">
+                <div className="browser-dots">
+                  <span className="dot"></span>
+                  <span className="dot"></span>
+                  <span className="dot"></span>
                 </div>
-              )}
+                <span className="browser-url">{project.slug || "project"}.dev</span>
+              </div>
+
+              <div className="browser-screen">
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="project-screen-img"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="project-screen-fallback">
+                    <span className="fallback-icon">{project.icon || "⚙️"}</span>
+                    <span className="fallback-label">{project.role}</span>
+                    <span className="fallback-sub">Enterprise Backend & Service Architecture</span>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
+          </CardItem>
         </div>
 
-        {/* Details / Content Column (Floating Depth: translateZ 30px) */}
-        <div
-          className="project-content-col"
-          style={{ transform: "translateZ(30px)", transformStyle: "preserve-3d" }}
-        >
-          <div className="project-meta-row">
+        {/* Details / Content Column (Floating depth with translateZ) */}
+        <div className="project-content-col">
+          <CardItem
+            translateZ={isSelected ? 25 : 0}
+            className="project-meta-row"
+          >
             <span className="project-year-tag font-mono">{project.year}</span>
             <span className="project-role-badge font-mono">{project.role}</span>
-          </div>
+          </CardItem>
 
-          <h3
+          <CardItem
+            as="h3"
+            translateZ={isSelected ? 35 : 0}
             className="project-card-title"
-            style={{ transform: "translateZ(20px)" }}
           >
             {project.title}
-          </h3>
-          <p
+          </CardItem>
+
+          <CardItem
+            as="p"
+            translateZ={isSelected ? 20 : 0}
             className="project-card-desc"
-            style={{ transform: "translateZ(15px)" }}
           >
             {project.shortDescription}
-          </p>
+          </CardItem>
 
           {/* Technology Tags */}
-          <div
+          <CardItem
+            translateZ={isSelected ? 30 : 0}
             className="project-tag-list"
-            style={{ transform: "translateZ(20px)" }}
           >
             {project.tags.map((tag) => (
               <span key={tag} className="tech-badge font-mono">
                 {tag}
               </span>
             ))}
-          </div>
+          </CardItem>
 
           {/* Actions: Case Study Modal & External Links */}
-          <div
+          <CardItem
+            translateZ={isSelected ? 45 : 0}
             className="project-action-row"
-            style={{ transform: "translateZ(30px)" }}
           >
             {project.detailComponent && (
               <button
-                onClick={() => onSelect(project)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onSelect(project);
+                }}
                 className="btn-case-study cursor-pointer"
               >
                 <span>Inspect Architecture</span>
@@ -310,6 +304,7 @@ function Project3DCard({
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
                 className="btn-circular-link cursor-pointer"
                 aria-label="GitHub Repository"
                 title="GitHub Repository"
@@ -317,10 +312,10 @@ function Project3DCard({
                 <FaGithub className="w-4 h-4" />
               </a>
             )}
-          </div>
+          </CardItem>
         </div>
-      </motion.article>
-    </div>
+      </CardBody>
+    </CardContainer>
   );
 }
 
@@ -330,7 +325,7 @@ export default function Projects() {
   const [filter, setFilter] = useState("All");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const categories = ["All", "Laravel", "Machine Learning", "Python", "PostgreSQL", "Flutter"];
+  const categories = ["All", "Next.js", "Laravel", "Machine Learning", "Python", "Supabase", "PostgreSQL"];
 
   const filteredProjects =
     filter === "All"
@@ -367,17 +362,38 @@ export default function Projects() {
           </div>
         </motion.div>
 
-        {/* 3D Stacked Project Cards: 1 Card Per Row (Grid 1) with 3D Perspective */}
-        <div className="projects-stack">
-          {filteredProjects.map((project, index) => (
-            <Project3DCard
-              key={project.title}
-              project={project}
-              index={index}
-              isInView={isInView}
-              onSelect={(p) => setSelectedProject(p)}
+        {/* 3D Coverflow Project Carousel */}
+        <div className="projects-carousel-wrap">
+          {filteredProjects.length === 0 ? (
+            <div className="projects-empty-state">
+              <p>No projects found matching category &ldquo;{filter}&rdquo;.</p>
+            </div>
+          ) : (
+            <CoverflowCarousel
+              key={filter}
+              slides={filteredProjects}
+              cardWidth="clamp(320px, 78vw, 860px)"
+              cardHeight="clamp(480px, 56vh, 520px)"
+              rotate={28}
+              depth={0.4}
+              perspective={2.6}
+              gap={0.08}
+              fade={0.15}
+              loop={filteredProjects.length > 2}
+              showNavigation={true}
+              showPagination={true}
+              label="Selected Projects Carousel"
+              className="projects-coverflow-carousel"
+              cardClassName="aspect-auto h-full rounded-[24px] bg-transparent shadow-none border-none p-0 cursor-default overflow-visible"
+              renderCard={(project, _index, isSelected) => (
+                <ProjectCardContent
+                  project={project}
+                  isSelected={isSelected}
+                  onSelect={(p) => setSelectedProject(p)}
+                />
+              )}
             />
-          ))}
+          )}
         </div>
       </div>
 

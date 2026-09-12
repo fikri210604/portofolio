@@ -148,11 +148,7 @@ const SLIDES = [
 export default function DemoOne() {
   return (
     <div className="w-full overflow-hidden bg-background py-6">
-      <CoverflowCarousel slides={SLIDES} showCaption />
+      <CoverflowCarousel slides={SLIDES} showCaption showNavigation showPagination />
     </div>
   );
 }
-
-// Preserve other exports if needed
-export { Floating3DCard } from "@/components/ui/3d-card";
-export { CardDialog, CardDialog as Component } from "@/components/ui/card-dialog";

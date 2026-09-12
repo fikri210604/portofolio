@@ -11,6 +11,8 @@ import {
   FaCheck,
   FaMapMarkerAlt,
   FaClock,
+  FaInstagram,
+  FaWhatsapp,
 } from "react-icons/fa";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -224,6 +226,26 @@ export default function Contact() {
                       <span className="font-heading">LinkedIn</span>
                       <FaArrowRight className="pill-arrow" />
                     </a>
+                    <a
+                      href="https://instagram.com/fikri_afh"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="social-pill"
+                    >
+                      <FaInstagram className="text-base text-pink-400" />
+                      <span className="font-heading">@fikri_afh</span>
+                      <FaArrowRight className="pill-arrow" />
+                    </a>
+                    <a
+                      href="https://wa.me/6282278434859"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="social-pill"
+                    >
+                      <FaWhatsapp className="text-base text-emerald-400" />
+                      <span className="font-heading">082278434859</span>
+                      <FaArrowRight className="pill-arrow" />
+                    </a>
                   </div>
                 </div>
 
@@ -234,7 +256,7 @@ export default function Contact() {
                       <FaMapMarkerAlt className="text-xs text-indigo-400" />
                       <span className="meta-label font-mono">BASE LOCATION</span>
                     </div>
-                    <span className="meta-value">Jakarta, Indonesia</span>
+                    <span className="meta-value">Bandar Lampung, Indonesia</span>
                   </div>
                   <div className="meta-item">
                     <div className="flex items-center gap-1.5 text-zinc-400">

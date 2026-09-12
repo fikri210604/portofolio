@@ -16,19 +16,29 @@ export const CardContainer: React.FC<{
   children?: React.ReactNode;
   className?: string;
   containerClassName?: string;
-}> = ({ children, className, containerClassName }) => {
+  style?: React.CSSProperties;
+  enabled?: boolean;
+}> = ({ children, className, containerClassName, style, enabled = true }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMouseEntered, setIsMouseEntered] = useState(false);
 
+  React.useEffect(() => {
+    if (!enabled && containerRef.current) {
+      setIsMouseEntered(false);
+      containerRef.current.style.transform = "rotateY(0deg) rotateX(0deg)";
+    }
+  }, [enabled]);
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || !enabled) return;
     const { left, top, width, height } = containerRef.current.getBoundingClientRect();
-    const x = (e.clientX - left - width / 2) / 25;
-    const y = (e.clientY - top - height / 2) / 25;
+    const x = (e.clientX - left - width / 2) / 22;
+    const y = (e.clientY - top - height / 2) / 22;
     containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
   };
 
   const handleMouseEnter = () => {
+    if (!enabled) return;
     setIsMouseEntered(true);
   };
 
@@ -42,7 +52,7 @@ export const CardContainer: React.FC<{
     <MouseEnterContext.Provider value={[isMouseEntered, setIsMouseEntered]}>
       <div
         className={`flex items-center justify-center ${containerClassName || ""}`}
-        style={{ perspective: "1000px" }}
+        style={{ perspective: "1000px", ...style }}
       >
         <div
           ref={containerRef}
@@ -82,6 +92,7 @@ export const CardItem: React.FC<CardItemProps> = ({
   rotateX = 0,
   rotateY = 0,
   rotateZ = 0,
+  style,
   ...rest
 }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -98,6 +109,7 @@ export const CardItem: React.FC<CardItemProps> = ({
       style={{
         transform,
         transformStyle: "preserve-3d",
+        ...style,
       }}
       {...rest}
     >

@@ -249,6 +249,12 @@
   border: 1px solid rgba(16, 185, 129, 0.22);
 }
 
+.type-leadership {
+  background: rgba(245, 158, 11, 0.1);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.22);
+}
+
 /* Card Middle Body */
 .card-middle-content {
   flex: 1;
@@ -327,22 +333,6 @@
   border-color: rgba(255, 255, 255, 0.15);
 }
 
-/* Responsive Handling */
-@media (max-width: 1024px) {
-  .experience-intro-panel {
-    width: 360px;
-    min-width: 360px;
-  }
-
-  .experience-uniform-card {
-    width: 400px;
-    min-width: 400px;
-    max-width: 400px;
-    height: 520px;
-    padding: 1.85rem;
-  }
-}
-
 @media (max-width: 768px) {
   .experience-cards-track {
     gap: 1.75rem;
@@ -375,4 +365,49 @@
   .card-bullet-item {
     font-size: 0.825rem;
   }
+}
+
+/* =========================================================
+   MOBILE VERTICAL LAYOUT (no GSAP, no horizontal scroll)
+   ========================================================= */
+.experience-mobile-container {
+  width: 100%;
+  padding: 4rem 1.25rem 5rem;
+  max-width: 640px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.experience-mobile-header {
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.experience-mobile-header .experience-intro-title {
+  font-size: clamp(2.2rem, 8vw, 2.8rem);
+  margin-bottom: 0.85rem;
+}
+
+.experience-mobile-header .experience-intro-desc {
+  font-size: 0.95rem;
+  margin-bottom: 0;
+  max-width: 100%;
+}
+
+.experience-mobile-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.experience-mobile-card {
+  /* Override fixed height for mobile — let content breathe */
+  width: 100% !important;
+  min-width: unset !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: unset !important;
+  max-height: unset !important;
 }

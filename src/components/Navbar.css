@@ -45,22 +45,24 @@
 
 /* ─── Logo (Left) ─── */
 .navbar-logo {
-    font-family: var(--font-heading);
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--white);
+    display: inline-flex;
+    align-items: center;
     text-decoration: none;
-    justify-self: start; /* tetap di kiri */
+    justify-self: start;
     z-index: 1001;
 }
 
-.logo-text {
-    color: var(--white);
-    letter-spacing: -0.5px;
+.navbar-logo-img {
+    height: 30px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 2px 10px rgba(0, 122, 255, 0.35));
+    transition: transform 0.25s ease, filter 0.25s ease;
 }
 
-.logo-dot {
-    display: none;
+.navbar-logo:hover .navbar-logo-img {
+    filter: drop-shadow(0 4px 16px rgba(0, 122, 255, 0.65));
 }
 
 /* ─── Desktop Navigation (Center) ─── */

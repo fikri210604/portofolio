@@ -66,7 +66,7 @@ export default function Hero() {
               Computer Science Student <span className="hero-role-sep">·</span> Software &amp; Data Engineer
             </h2>
             <p className="hero-statement">
-              Computer Science student at Universitas Lampung building practical technology solutions, web systems, and data-driven applications.
+              Computer Science student at Universitas Lampung with a focus on software engineering and data. Experienced in building practical web platforms, geospatial systems, and machine learning solutions.
             </p>
             <div className="hero-cta-row">
               <button

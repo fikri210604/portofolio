@@ -57,9 +57,9 @@ const experiences: ExperienceItem[] = [
     icon: FaChalkboardTeacher,
     highlights: [
       "Assisted courses in Mathematics, Data Structures & Algorithms, Object-Oriented Programming, and Advanced Web Programming.",
-      "Guided students in understanding programming concepts, algorithmic thinking, and solving technical problems during practical sessions and projects.",
-      "Conducted practical sessions, tutorials, and consultations for students with different levels of understanding.",
-      "Developed technical communication skills by explaining complex concepts in a clear and structured way.",
+      "Guided students through hands-on programming labs, algorithmic problem-solving, and project development.",
+      "Conducted tutorials, consultations, and code discussions for students with varying levels of understanding.",
+      "Strengthened technical communication skills by explaining complex computing concepts clearly and systematically.",
     ],
     tags: ["Data Structures", "Algorithms", "OOP", "Advanced Web", "Mentorship"],
   },
@@ -71,9 +71,9 @@ const experiences: ExperienceItem[] = [
     type: "Engineering",
     icon: FaBolt,
     highlights: [
-      "Developed a geospatial-based infrastructure monitoring system to support the digitalization of transmission network data management.",
-      "Transformed a previously manual data management process into a more accessible digital visualization.",
-      "Analyzed operational needs and translated them into a technology-based solution.",
+      "Developed an interactive geospatial monitoring system to support the digitalization of transmission network data management.",
+      "Transformed a previously manual data process into a centralized digital GIS visualization for operational teams.",
+      "Analyzed operational needs and translated field requirements into a working software solution.",
     ],
     tags: ["Geospatial GIS", "Transmission Network", "Data Digitalization", "Full-Stack"],
   },
@@ -213,7 +213,7 @@ export default function Experience() {
               <span className="experience-title-italic">Experience</span>
             </h2>
             <p className="experience-intro-desc">
-              A chronological timeline of engineering leadership, production systems, and academic mentorship.
+              Timeline of internships, teaching assistant roles, and student organization leadership.
             </p>
           </div>
 
@@ -286,8 +286,7 @@ export default function Experience() {
               </h2>
 
               <p className="experience-intro-desc">
-                Scroll down to explore a chronological timeline of engineering leadership,
-                production telemetry systems, and academic mentorship.
+                Timeline of internships, teaching assistant roles, and student organization leadership.
               </p>
 
               <div className="experience-explore-prompt font-mono">

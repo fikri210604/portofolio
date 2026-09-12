@@ -31,7 +31,7 @@ export default function About() {
         >
           <span className="section-mono-tag">01. PROFILE & PHILOSOPHY</span>
           <h2 className="about-display-title">
-            Engineering with Purpose, Precision, and Pragmatism.
+            Building practical technology that solves real-world problems.
           </h2>
         </motion.div>
 
@@ -51,15 +51,15 @@ export default function About() {
             }}
           >
             <motion.p className="about-lead-paragraph" variants={fadeInUp}>
-              Computer Science student at <strong>Universitas Lampung (August 2023 – Present)</strong> with a strong interest in software development, data, and building practical technology solutions.
+              Computer Science student at <strong>Universitas Lampung (GPA: 3.89 / 4.00)</strong> with a strong interest in building practical technology that solves real-world problems. I enjoy turning ideas into reliable, useful systems while continuously learning through the process.
             </motion.p>
 
             <motion.p className="about-body-paragraph" variants={fadeInUp}>
-              Experienced in developing web-based and data-driven applications, while also serving as a <strong>Teaching Assistant</strong> for computer science courses, <strong>Tutor at SMA Al Kautsar</strong>, and student organization leader as <strong>Head of External Relations &amp; Media Commission at DPM FMIPA</strong>.
+              Throughout my academic and practical journey, I have built functional systems across web and data domains — from developing an interactive geospatial platform to digitalize transmission network infrastructure at <strong>PT PLN UIP3B Sumatera</strong>, to building <strong>Mentor Belajarku</strong>, a digital platform designed to streamline tutoring operations.
             </motion.p>
 
             <motion.p className="about-body-paragraph" variants={fadeInUp}>
-              I enjoy learning by building, understanding real-world problems, and turning ideas into useful solutions through technology. My approach focuses on practical workflows, clean architecture, and verifiable data integrity.
+              My experience as a <strong>Teaching Assistant</strong> for Data Structures &amp; Algorithms, OOP, and Advanced Web Programming has strengthened both my technical foundation and communication skills. Combined with leadership roles in <strong>GenBI</strong> and <strong>DPM FMIPA</strong>, I've learned that good technology is not just about writing code, but understanding people and the problems worth solving.
             </motion.p>
 
             {/* Achievements Strip */}
@@ -133,16 +133,16 @@ export default function About() {
                 <span className="stat-text">Cumulative GPA</span>
               </div>
               <div className="stat-box">
+                <span className="stat-num">6+</span>
+                <span className="stat-text">Projects &amp; Systems</span>
+              </div>
+              <div className="stat-box">
                 <span className="stat-num">4</span>
                 <span className="stat-text">Courses Assisted</span>
               </div>
               <div className="stat-box">
                 <span className="stat-num">2026</span>
                 <span className="stat-text">GenBI Scholar</span>
-              </div>
-              <div className="stat-box">
-                <span className="stat-num">100%</span>
-                <span className="stat-text">Solution Driven</span>
               </div>
             </motion.div>
 

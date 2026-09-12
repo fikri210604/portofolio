@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import logoFikri from '../assets/logofikri.png';
 import './Navbar.css';
 
 interface NavLink {
@@ -101,11 +102,15 @@ export default function Navbar() {
           href="#home"
           className="navbar-logo"
           onClick={(e) => handleNavClick(e, '#home')}
-          whileHover={{ opacity: 0.8 }}
+          whileHover={{ opacity: 0.85, scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+          aria-label="AFH Home"
         >
-          <span className="font-heading font-bold tracking-tight text-zinc-100 text-lg">
-            AFH<span className="text-zinc-500">.</span>
-          </span>
+          <img
+            src={logoFikri.src}
+            alt="AFH Logo"
+            className="navbar-logo-img"
+          />
         </motion.a>
 
         {/* Kolom Tengah: Desktop Navigation */}

@@ -126,7 +126,7 @@ export default function Contact() {
             <span className="title-muted">SOMETHING MEANINGFUL.</span>
           </h2>
           <p className="contact-tagline">
-            Available for full-time engineering roles, system architecture consulting, and high-impact software projects.
+            Ready to collaborate on transformative software systems, multidisciplinary innovation, and impactful digital products.
           </p>
         </motion.div>
 
@@ -156,7 +156,7 @@ export default function Contact() {
                     </div>
                     <div className="status-radar">
                       <span className="radar-dot" />
-                      <span className="radar-label font-mono">OPEN FOR OPPORTUNITIES</span>
+                      <span className="radar-label font-mono">READY TO COLLABORATE &amp; BUILD</span>
                     </div>
                   </div>
 

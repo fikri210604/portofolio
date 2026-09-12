@@ -64,12 +64,11 @@ export default function Skills() {
           variants={fadeInUp}
         >
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-indigo-500/20 bg-indigo-500/10 text-indigo-400 text-xs font-mono mb-4">
-            <span>03. TECHNOLOGY & TOOLCHAIN</span>
+            <span>03. TECHNOLOGY &amp; TOOLCHAIN</span>
           </div>
-          <h2 className="skills-title">Verified Capabilities &amp; Stack.</h2>
+          <h2 className="skills-title">Core Engineering Stack.</h2>
           <p className="skills-subtitle mx-auto">
-            Interactive overview of core technologies deployed across production systems, 
-            research, and client platforms.
+            Practical technology toolchain deployed across shipped systems, enterprise workflows, mobile apps, and applied machine learning research.
           </p>
         </motion.div>
 

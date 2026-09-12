@@ -12,6 +12,8 @@ import deteksiCabaiImg from "../assets/projects/deteksi-cabai.webp";
 import undanganImg from "../assets/projects/undangan.webp";
 import suratMenyuratImg from "../assets/projects/surat-menyurat.webp";
 import otolinkImg from "../assets/projects/otolink.webp";
+import mentorBelajarkuImg from "../assets/projects/mentorbelajarku.png";
+import kknImg from "../assets/projects/kkn.png";
 
 // Individual project detail components
 import MentorBelajarkuDetail from "./projects/MentorBelajarku";
@@ -43,12 +45,13 @@ interface Project {
 const projects: Project[] = [
   {
     title: "Mentor Belajarku — Digital Tutoring Ecosystem",
-    role: "Full-Stack Developer & System Architect",
+    role: "Lead System Architect & Full-Stack Developer",
     shortDescription:
-      "Full-stack digital ecosystem built with Next.js & Supabase, transforming tutoring operations: scheduling, attendance, learning records, session recaps, and tutor compensation.",
+      "End-to-end digital ecosystem built with Next.js & Supabase, transforming tutoring operations: real-time scheduling, automated attendance, learning records, meeting recaps, and tutor compensation.",
     description:
-      "Building a digital ecosystem for Mentor Belajarku using Next.js and Supabase to gradually transform and integrate tutoring operations into a structured digital platform. Currently developing the initial operational system covering scheduling, tutoring sessions, student attendance, learning records, meeting recaps, and tutor compensation. Designing the system around real operational workflows and user needs rather than simply digitizing existing spreadsheet processes.",
+      "Architected a centralized digital ecosystem for Mentor Belajarku using Next.js and Supabase, transforming fragmented manual spreadsheet workflows into a cohesive, production-ready operational platform. Designed around authentic organizational pain points, the system handles complex session scheduling, dynamic student attendance tracking, automated tutor compensation calculations, and comprehensive session recaps.",
     icon: "📚",
+    image: mentorBelajarkuImg.src,
     tags: ["Next.js", "TypeScript", "React", "Supabase", "PostgreSQL", "Tailwind CSS", "System Architecture"],
     year: "2026 (Ongoing)",
     slug: "mentor-belajarku",
@@ -56,11 +59,11 @@ const projects: Project[] = [
   },
   {
     title: "SkillBridge AI — Job Recommendation System",
-    role: "Machine Learning Engineer",
+    role: "Machine Learning & Systems Engineer",
     shortDescription:
-      "Data-driven career recommendation system utilizing NLP (SBERT) and Machine Learning (XGBoost) to deliver accurate job opportunity matches.",
+      "Intelligent career recommendation platform leveraging NLP (SBERT) and Machine Learning (XGBoost) to map user skillsets to high-relevance job opportunities.",
     description:
-      "Developed a data-driven job recommendation system to help users discover job opportunities based on their profiles and skills. Applied machine learning and natural language processing to process job information and improve the relevance of recommendations.",
+      "Designed and implemented an intelligent recommendation system to bridge the gap between user competencies and job market requirements. Engineered an end-to-end data pipeline integrating SBERT embeddings for semantic skill matching and XGBoost classifiers for ranking, exposed via high-performance FastAPI microservices.",
     icon: "🤖",
     tags: ["Python", "FastAPI", "SBERT", "XGBoost", "Machine Learning", "Next.js"],
     year: "2025",
@@ -69,12 +72,13 @@ const projects: Project[] = [
   },
   {
     title: "Sistem Informasi KKN Universitas Lampung",
-    role: "Backend Architect & Developer",
+    role: "Backend Architect & Database Engineer",
     shortDescription:
-      "Web-based information system to support digital management, coordination, and administrative validation of KKN activities at Universitas Lampung.",
+      "Institutional management platform built to coordinate, validate, and digitally orchestrate university-wide community service activities for thousands of students.",
     description:
-      "Developing a web-based information system to support the management of Kuliah Kerja Nyata (KKN) activities at Universitas Lampung. Designing the system to improve the digital management and coordination of KKN processes.",
+      "Architected a robust institutional platform to digitize the administrative validation, student placement, and fieldwork reporting workflows for Kuliah Kerja Nyata (KKN) Universitas Lampung. Built with Laravel and PostgreSQL, ensuring verifiable audit trails, role-based data isolation, and scalable REST APIs.",
     icon: "🏫",
+    image: kknImg.src,
     tags: ["Laravel", "PHP", "REST API", "PostgreSQL", "Database Architecture"],
     year: "2026",
     slug: "kkn-unila",
@@ -82,11 +86,11 @@ const projects: Project[] = [
   },
   {
     title: "TerraGuard AI — Disaster Risk Prediction",
-    role: "Data Scientist & ML Engineer",
+    role: "Data Scientist & Systems Modeler",
     shortDescription:
-      "Data-driven disaster risk prediction system using environmental data and Random Forest models to provide risk awareness across Lampung.",
+      "Predictive disaster risk classification system utilizing environmental data and Random Forest algorithms to bolster regional disaster readiness in Lampung.",
     description:
-      "Developed a data-driven disaster risk prediction system to provide information about potential disaster risks in Lampung. Explored the use of environmental and disaster-related data to support risk awareness and decision-making.",
+      "Engineered an applied disaster risk assessment pipeline to assist municipal disaster mitigation in Lampung. Processed multidimensional environmental and topographical datasets to train and evaluate predictive Random Forest models for proactive hazard detection and risk mitigation.",
     icon: "🌪️",
     tags: ["Python", "Machine Learning", "Random Forest", "Scikit-Learn", "Pandas"],
     year: "2025",
@@ -95,11 +99,11 @@ const projects: Project[] = [
   },
   {
     title: "FishyGo – Fisheries E-Commerce Platform",
-    role: "Full-Stack Developer",
+    role: "Full-Stack Systems Developer",
     shortDescription:
-      "Platform e-commerce perikanan segar dengan integrasi ongkos kirim real-time (RajaOngkir), Google OAuth, dan multi-role access control.",
+      "Fresh fisheries commerce platform integrating real-time courier shipping calculations (RajaOngkir), secure Google OAuth, and multi-tier role-based access control.",
     description:
-      "Fullstack e-commerce platform for selling fresh fish and seafood, featuring product catalog, shopping cart, checkout with real-time shipping cost (RajaOngkir), and transaction flow with role-based access (Admin, User, Courier). Includes authentication with Google OAuth and structured order management system.",
+      "Full-stack commercial platform designed to streamline fresh seafood distribution from local fisheries directly to consumers. Engineered complete transaction workflows, dynamic shipping estimation with RajaOngkir APIs, and robust role-based access for admins, couriers, and buyers.",
     image: fishygoImg.src,
     tags: ["Laravel", "PHP", "PostgreSQL", "Tailwind", "RajaOngkir API", "OAuth 2.0"],
     githubUrl: "https://github.com/fikri210604/fishygo",
@@ -111,9 +115,9 @@ const projects: Project[] = [
     title: "Chili Disease Detection System (AI)",
     role: "Computer Vision & ML Engineer",
     shortDescription:
-      "Sistem klasifikasi penyakit daun tanaman cabai berbasis ekstraksi fitur citra digital dan model Support Vector Machine (SVM).",
+      "Agricultural computer vision system combining digital image feature extraction with Support Vector Machines (SVM) for early plant pathology diagnosis.",
     description:
-      "Machine learning-based classification system for detecting diseases in chili plants. Implements SVM-based model to assist early diagnosis and improve agricultural decision making.",
+      "Developed a machine-learning-driven crop pathology diagnostic system to assist agriculturalists in early pest and disease identification. Implemented custom feature extraction pipelines combined with Support Vector Machine (SVM) models for leaf-level classification.",
     image: deteksiCabaiImg.src,
     tags: ["Python", "SVM", "Computer Vision", "Machine Learning", "Tailwind"],
     githubUrl: "https://github.com/fikri210604/deteksi-penyakit-cabai",
@@ -151,11 +155,11 @@ const projects: Project[] = [
   },
   {
     title: "Otolink : Electronic & Vehicle Marketplace App",
-    role: "Mobile App Developer",
+    role: "Mobile Application Engineer",
     shortDescription:
-      "Aplikasi mobile cross-platform marketplace otomotif dan elektronik dibangun dengan Flutter dan Firebase backend real-time.",
+      "Cross-platform mobile vehicle & electronics marketplace engineered with Flutter and real-time Firebase backend, featuring OAuth authentication and structured commerce workflows.",
     description:
-      "Otolink is an application for buying and selling electronic and vehicle products. It features a product catalog, shopping cart, and transaction flow with role-based access (Admin, User). Includes authentication with Google OAuth and structured order management system.",
+      "Engineered a performant cross-platform mobile marketplace application using Flutter and Firebase. Designed responsive client-side UI, real-time catalog synchronization, Google OAuth integration, and end-to-end shopping cart and checkout architecture.",
     image: otolinkImg.src,
     tags: ["Flutter", "Dart", "Firebase", "Google OAuth", "Mobile UI"],
     githubUrl: "https://github.com/fikri210604/otolink",
@@ -342,10 +346,10 @@ export default function Projects() {
           animate={isInView ? "visible" : "hidden"}
           variants={fadeInUp}
         >
-          <span className="section-mono-tag">04. SELECTED CASE STUDIES</span>
-          <h2 className="projects-title">Featured Systems & Projects.</h2>
+          <span className="section-mono-tag">04. SELECTED PROJECTS</span>
+          <h2 className="projects-title">Featured Projects &amp; Systems.</h2>
           <p className="projects-subtitle">
-            Demonstrating architectural depth, backend workflows, and machine learning models in production environments.
+            A collection of web platforms, geospatial applications, and machine learning systems I have built.
           </p>
 
           {/* Minimalist Filter Tabs */}

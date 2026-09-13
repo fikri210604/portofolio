@@ -14,6 +14,8 @@ import suratMenyuratImg from "../assets/projects/surat-menyurat.webp";
 import otolinkImg from "../assets/projects/otolink.webp";
 import mentorBelajarkuImg from "../assets/projects/mentorbelajarku.png";
 import kknImg from "../assets/projects/kkn.png";
+import webgisImg from "../assets/projects/webgis.png";
+import jobseekeraiImg from "../assets/projects/jobseekerai.png";
 
 // Individual project detail components
 import MentorBelajarkuDetail from "./projects/MentorBelajarku";
@@ -26,6 +28,7 @@ import OtolinkDetail from "./projects/Otolink";
 import KKNSystemDetail from "./projects/KKNSystem";
 import SkillBridgeAIDetail from "./projects/SkillBridgeAI";
 import TerraGuardAIDetail from "./projects/TerraGuardAI";
+import WebGISDetail from "./projects/WebGIS";
 
 interface Project {
   title: string;
@@ -44,30 +47,57 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "Mentor Belajarku — Digital Tutoring Ecosystem",
+    title: "Mentor Belajarku — Sistem Manajemen & Presensi Bimbel Terpadu",
     role: "Lead System Architect & Full-Stack Developer",
     shortDescription:
-      "End-to-end digital ecosystem built with Next.js & Supabase, transforming tutoring operations: real-time scheduling, automated attendance, learning records, meeting recaps, and tutor compensation.",
+      "Integrated tutoring management platform featuring camera-verified attendance, decoupled schedule-session orchestration, and automated tutor payroll with historical rate integrity.",
     description:
-      "Architected a centralized digital ecosystem for Mentor Belajarku using Next.js and Supabase, transforming fragmented manual spreadsheet workflows into a cohesive, production-ready operational platform. Designed around authentic organizational pain points, the system handles complex session scheduling, dynamic student attendance tracking, automated tutor compensation calculations, and comprehensive session recaps.",
-    icon: "📚",
+      "Architected a production-grade operational platform for tutoring institutions to replace fragmented spreadsheets and manual paper logs. Engineered with Next.js 15 App Router, TypeScript, Tailwind CSS v4, and Supabase (PostgreSQL & Storage). Features direct in-browser photo attendance capture with client-side compression (react-webcam), clear separation between weekly routine schedules and actual calendar sessions (supporting substitute tutors & rescheduling), server-side automated payroll calculation with historical effective dating, role-based access control via Better Auth, and complete audit logging for sensitive actions.",
+    icon: "🎓",
     image: mentorBelajarkuImg.src,
-    tags: ["Next.js", "TypeScript", "React", "Supabase", "PostgreSQL", "Tailwind CSS", "System Architecture"],
-    year: "2026 (Ongoing)",
+    tags: [
+      "Next.js 15",
+      "TypeScript",
+      "Tailwind CSS v4",
+      "Supabase",
+      "Better Auth",
+      "react-webcam",
+      "Recharts",
+      "TanStack Table",
+      "Zustand",
+    ],
+    githubUrl: "https://github.com/fikri210604/mentorbelajarku",
+    year: "2026 (Active)",
     slug: "mentor-belajarku",
     detailComponent: MentorBelajarkuDetail,
   },
   {
-    title: "SkillBridge AI — Job Recommendation System",
+    title: "PLN WebGIS — Transmission Anomaly Monitoring Dashboard",
+    role: "Frontend & UI/UX Engineer (Intern)",
+    shortDescription:
+      "Interactive WebGIS dashboard engineered with Next.js and Leaflet.js at PT PLN (Persero) UIP3B Sumatera to visualize transmission assets, disturbances, and anomaly statuses.",
+    description:
+      "Designed and developed the frontend WebGIS monitoring dashboard for PT PLN (Persero) UIP3B Sumatera UPT Tanjung Karang, transforming conventional spreadsheet workflows into an interactive geospatial platform. Built with Next.js and Leaflet.js, featuring coordinate markers, detail popups, multi-user role access, and disturbance status indicators. Rigorously validated via User Acceptance Testing (UAT) with high usability ratings and officially approved for operational deployment.",
+    icon: "⚡",
+    image: webgisImg.src,
+    tags: ["Next.js", "Leaflet.js", "WebGIS", "UI/UX Design", "UAT Tested", "PT PLN"],
+    githubUrl: "https://github.com/fikri210604/anomali-detection",
+    year: "2025 - 2026",
+    slug: "pln-webgis-anomaly",
+    detailComponent: WebGISDetail,
+  },
+  {
+    title: "JobSeeker AI — Intelligent Career Advisor & Job Matching Platform",
     role: "Machine Learning & Systems Engineer",
     shortDescription:
-      "Intelligent career recommendation platform leveraging NLP (SBERT) and Machine Learning (XGBoost) to map user skillsets to high-relevance job opportunities.",
+      "End-to-end AI career platform integrating SBERT multilingual semantic retrieval, hybrid ML scoring (XGBoost 69.9% accuracy), and Google Gemini 2.5 Flash for personalized career advisory.",
     description:
-      "Designed and implemented an intelligent recommendation system to bridge the gap between user competencies and job market requirements. Engineered an end-to-end data pipeline integrating SBERT embeddings for semantic skill matching and XGBoost classifiers for ranking, exposed via high-performance FastAPI microservices.",
+      "Architected a dual-pipeline career advisory platform to address Indonesia's labor skill mismatch. Engineered a hybrid recommendation system fusing heuristic domain rules (60%) with an XGBoost ML classifier (40%) trained on 60,940 pairwise samples. Integrated SBERT dense vector retrieval across 1,491 scraped jobs and utilized Google Gemini 2.5 Flash for automated skill gap roadmaps and personalized cover letters, deployed via FastAPI on Cloud Run.",
     icon: "🤖",
-    tags: ["Python", "FastAPI", "SBERT", "XGBoost", "Machine Learning", "Next.js"],
-    year: "2025",
-    slug: "skillbridge-ai",
+    image: jobseekeraiImg.src,
+    tags: ["Python", "FastAPI", "Next.js 16", "SBERT", "XGBoost", "Google Gemini", "MLflow", "DagsHub"],
+    year: "2025 - 2026",
+    slug: "jobseeker-ai",
     detailComponent: SkillBridgeAIDetail,
   },
   {
@@ -98,14 +128,14 @@ const projects: Project[] = [
     detailComponent: TerraGuardAIDetail,
   },
   {
-    title: "FishyGo – Fisheries E-Commerce Platform",
-    role: "Full-Stack Systems Developer",
+    title: "FishyGo — Fresh Seafood E-Commerce Platform",
+    role: "Full-Stack Web Developer",
     shortDescription:
-      "Fresh fisheries commerce platform integrating real-time courier shipping calculations (RajaOngkir), secure Google OAuth, and multi-tier role-based access control.",
+      "Fresh seafood retail e-commerce platform built with Laravel 10 and Tailwind CSS, featuring automated RajaOngkir shipping calculation, Midtrans payments, and multi-role dashboards.",
     description:
-      "Full-stack commercial platform designed to streamline fresh seafood distribution from local fisheries directly to consumers. Engineered complete transaction workflows, dynamic shipping estimation with RajaOngkir APIs, and robust role-based access for admins, couriers, and buyers.",
+      "Designed and developed an end-to-end fresh seafood e-commerce platform using Laravel 10 to digitalize fishery retail transactions. Implemented product catalogs, interactive cart, automated courier shipping estimation via RajaOngkir API, online payments via Midtrans and COD, alongside dedicated role-based interfaces for administrators, customers, and couriers.",
     image: fishygoImg.src,
-    tags: ["Laravel", "PHP", "PostgreSQL", "Tailwind", "RajaOngkir API", "OAuth 2.0"],
+    tags: ["Laravel 10", "PHP", "Tailwind CSS", "RajaOngkir API", "Midtrans", "E-Commerce"],
     githubUrl: "https://github.com/fikri210604/fishygo",
     year: "2025",
     slug: "fishygo-store",

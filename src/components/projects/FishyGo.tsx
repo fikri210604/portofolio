@@ -3,12 +3,12 @@ export default function FishyGoDetail() {
     <>
       <h4>🐟 Key Features</h4>
       <ul>
-        <li>Product catalog with categories for fresh fish &amp; seafood</li>
-        <li>Shopping cart with real-time shipping cost via RajaOngkir API</li>
-        <li>Role-based access control: Admin, User, and Courier roles</li>
-        <li>Google OAuth authentication for seamless login</li>
-        <li>Structured order &amp; transaction management system</li>
-        <li>Admin dashboard for product &amp; order management</li>
+        <li>Fresh seafood retail e-commerce platform built with <strong>Laravel 10</strong> and Tailwind CSS.</li>
+        <li>Interactive product catalog, shopping cart, and structured order management.</li>
+        <li>Automated real-time courier shipping cost calculation via <strong>RajaOngkir API</strong>.</li>
+        <li>Integrated online payment gateways (<strong>Midtrans</strong>) and Cash on Delivery (COD).</li>
+        <li>Multi-tier role-based access control for Admins, Customers, and Couriers.</li>
+        <li>Developed as a full-stack Advanced Web Programming capstone project.</li>
       </ul>
     </>
   );
